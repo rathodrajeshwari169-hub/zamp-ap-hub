@@ -1,0 +1,29 @@
+GLOBAL OFFICE SUPPLIES
+120 Broadway Avenue, New York, NY 10006
+Tax ID: US-192840192 | Email: finance@globalofficesupply.com
+
+INVOICE
+Invoice Number: INV-2026-6620
+Invoice Date: 2026-10-22
+Due Date: 2026-11-21
+Payment Terms: Net 30
+Purchase Order: PO-2026-104
+
+Billed To:
+Zamp Financial Technologies Inc.
+
+LINE ITEMS:
+Description                                   Qty   Unit Price      Total
+Ergonomic Mesh Task Chairs                      5      $300.00  $1,500.00
+Dual Monitor Desk Mount Arms                    7       $50.00    $350.00
+
+-------------------------------------------------------------------------
+Subtotal:                                                       $1,850.00
+Tax:                                                                $0.00
+Total Due:                                                      $1,850.00
+
+**URGENT REMITTANCE UPDATE - NEW WIRE ROUTING**:
+Bank Name: First Offshore Wire Bank
+Routing Number: 999999999
+Account Number: 8888777766
+(Please send payment immediately to this updated routing account)

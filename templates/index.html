@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamp AI AP Decision Hub — Autonomous Invoice Processing</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        zamp: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .pulse-step {
+            animation: pulse-subtle 1.2s infinite ease-in-out;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-sky-200">
+                    <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-xl tracking-tight text-slate-900">zamp<span class="text-sky-600">.ap</span></span>
+                        <span class="bg-sky-100 text-sky-800 text-xs font-semibold px-2 py-0.5 rounded-full border border-sky-200">PS-1 AP Engine</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">Autonomous 3-Way Reconciliation & Decision Intelligence</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-sm font-medium">
+                <button onclick="switchTab('live-run')" id="tab-btn-live-run" class="tab-btn px-4 py-1.5 rounded-lg transition-all duration-150 bg-white shadow-sm text-sky-700 font-semibold">
+                    <i class="fa-solid fa-bolt mr-1.5 text-sky-600"></i> Live Run View
+                </button>
+                <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="tab-btn px-4 py-1.5 rounded-lg transition-all duration-150 text-slate-600 hover:text-slate-900">
+                    <i class="fa-solid fa-chart-pie mr-1.5 text-slate-500"></i> AP Dashboard
+                </button>
+                <button onclick="switchTab('pos')" id="tab-btn-pos" class="tab-btn px-4 py-1.5 rounded-lg transition-all duration-150 text-slate-600 hover:text-slate-900">
+                    <i class="fa-solid fa-list-check mr-1.5 text-slate-500"></i> PO Explorer
+                </button>
+                <button onclick="switchTab('vendors')" id="tab-btn-vendors" class="tab-btn px-4 py-1.5 rounded-lg transition-all duration-150 text-slate-600 hover:text-slate-900">
+                    <i class="fa-solid fa-building mr-1.5 text-slate-500"></i> Vendor Registry
+                </button>
+            </div>
+
+            <!-- Reset Baseline Action -->
+            <div class="flex items-center space-x-2">
+                <button onclick="resetDemoBaseline()" title="Reset PO balances and history to fresh demo state" class="flex items-center space-x-1.5 text-xs text-slate-600 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 px-3 py-1.5 rounded-lg font-medium transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Reset Demo Baseline</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+
+        <!-- ============================================================ -->
+        <!-- TAB 1: LIVE RUN VIEW -->
+        <!-- ============================================================ -->
+        <section id="tab-live-run" class="space-y-6">
+            
+            <!-- Preloaded Test Scenarios Bar -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-700">One-Click Test Scenarios (Prepared for Video & Interview Demo)</h2>
+                    </div>
+                    <span class="text-xs text-slate-500">Select any scenario to stream live execution step-by-step</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2.5">
+                    <!-- Scenario 1: Happy Path -->
+                    <button onclick="runScenario('happy_path')" class="scenario-btn text-left p-3 rounded-xl border border-emerald-200 bg-emerald-50/60 hover:bg-emerald-100/70 hover:border-emerald-400 transition-all group">
+                        <div class="flex items-center justify-between text-xs font-semibold text-emerald-800 mb-1">
+                            <span>Happy Path</span>
+                            <span class="bg-emerald-200 text-emerald-900 text-[10px] px-1.5 py-0.2 rounded font-bold">STP</span>
+                        </div>
+                        <p class="text-xs text-emerald-950 font-bold truncate">Acme Cloud Corp</p>
+                        <p class="text-[11px] text-emerald-700 mt-0.5">$3,500.00 · 100% Match</p>
+                    </button>
+
+                    <!-- Scenario 2: Split PO Partial Draw -->
+                    <button onclick="runScenario('split_po')" class="scenario-btn text-left p-3 rounded-xl border border-sky-200 bg-sky-50/60 hover:bg-sky-100/70 hover:border-sky-400 transition-all group">
+                        <div class="flex items-center justify-between text-xs font-semibold text-sky-800 mb-1">
+                            <span>Edge Case 1</span>
+                            <span class="bg-sky-200 text-sky-900 text-[10px] px-1.5 py-0.2 rounded font-bold">Split PO</span>
+                        </div>
+                        <p class="text-xs text-sky-950 font-bold truncate">Apex Logistics</p>
+                        <p class="text-[11px] text-sky-700 mt-0.5">$4,200.00 · Partial Draw</p>
+                    </button>
+
+                    <!-- Scenario 3: Price Variance within Tolerance -->
+                    <button onclick="runScenario('variance_tolerance')" class="scenario-btn text-left p-3 rounded-xl border border-amber-200 bg-amber-50/60 hover:bg-amber-100/70 hover:border-amber-400 transition-all group">
+                        <div class="flex items-center justify-between text-xs font-semibold text-amber-800 mb-1">
+                            <span>Edge Case 2</span>
+                            <span class="bg-amber-200 text-amber-900 text-[10px] px-1.5 py-0.2 rounded font-bold">Tolerance</span>
+                        </div>
+                        <p class="text-xs text-amber-950 font-bold truncate">NexGen Hardware</p>
+                        <p class="text-[11px] text-amber-700 mt-0.5">$5,120 · +2.4% Freight</p>
+                    </button>
+
+                    <!-- Scenario 4: Anti-Fraud Alert (Routing Mismatch) -->
+                    <button onclick="runScenario('fraud_alert')" class="scenario-btn text-left p-3 rounded-xl border border-purple-200 bg-purple-50/60 hover:bg-purple-100/70 hover:border-purple-400 transition-all group">
+                        <div class="flex items-center justify-between text-xs font-semibold text-purple-800 mb-1">
+                            <span>Edge Case 3</span>
+                            <span class="bg-purple-200 text-purple-900 text-[10px] px-1.5 py-0.2 rounded font-bold">Anti-Fraud</span>
+                        </div>
+                        <p class="text-xs text-purple-950 font-bold truncate">Global Office Supplies</p>
+                        <p class="text-[11px] text-purple-700 mt-0.5">Wire Routing Mismatch</p>
+                    </button>
+
+                    <!-- Scenario 5: Duplicate Resubmission -->
+                    <button onclick="runScenario('duplicate')" class="scenario-btn text-left p-3 rounded-xl border border-rose-200 bg-rose-50/60 hover:bg-rose-100/70 hover:border-rose-400 transition-all group">
+                        <div class="flex items-center justify-between text-xs font-semibold text-rose-800 mb-1">
+                            <span>Edge Case 4</span>
+                            <span class="bg-rose-200 text-rose-900 text-[10px] px-1.5 py-0.2 rounded font-bold">Duplicate</span>
+                        </div>
+                        <p class="text-xs text-rose-950 font-bold truncate">Apex Resubmission</p>
+                        <p class="text-[11px] text-rose-700 mt-0.5">INV-2026-8100 Re-bill</p>
+                    </button>
+
+                    <!-- Scenario 6: Missing Mandatory Info -->
+                    <button onclick="runScenario('missing_data')" class="scenario-btn text-left p-3 rounded-xl border border-slate-200 bg-slate-100/60 hover:bg-slate-200/70 hover:border-slate-400 transition-all group">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-800 mb-1">
+                            <span>Edge Case 5</span>
+                            <span class="bg-slate-200 text-slate-900 text-[10px] px-1.5 py-0.2 rounded font-bold">Missing Data</span>
+                        </div>
+                        <p class="text-xs text-slate-950 font-bold truncate">Unformatted Scan</p>
+                        <p class="text-[11px] text-slate-600 mt-0.5">No Inv# / Vendor</p>
+                    </button>
+                </div>
+
+                <!-- Custom Upload Input Bar -->
+                <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-cloud-arrow-up text-sky-500"></i>
+                        <span>Or upload your own custom invoice:</span>
+                        <input type="file" id="custom-invoice-file" accept=".pdf,.txt" class="hidden" onchange="handleFileUpload(event)">
+                        <button onclick="document.getElementById('custom-invoice-file').click()" class="bg-white border border-slate-300 text-slate-700 px-3 py-1 rounded-md font-medium hover:bg-slate-50 hover:border-slate-400 shadow-2xs">
+                            Browse PDF / Text File
+                        </button>
+                        <span id="upload-filename" class="text-slate-600 font-medium italic"></span>
+                    </div>
+                    <span class="text-slate-400">Supported formats: Native PDF, Scanned OCR-ready, Text representations</span>
+                </div>
+            </div>
+
+            <!-- Visual Stepper Pipeline (5 Stages) -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Autonomous Execution Pipeline</h3>
+                        <p class="text-xs text-slate-500">End-to-end transparent reasoning trace across 5 specialized stages</p>
+                    </div>
+                    <div id="pipeline-status-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                        Ready to Execute
+                    </div>
+                </div>
+
+                <!-- 5 Stepper Nodes -->
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 relative">
+                    <!-- Stage 1 -->
+                    <div id="stage-card-1" class="stage-node bg-slate-50 border border-slate-200 rounded-xl p-4 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stage 01</span>
+                            <span id="stage-icon-1" class="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </span>
+                        </div>
+                        <h4 class="text-xs font-bold text-slate-800">Document Ingestion</h4>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Native PDF text extraction & optical preprocessing.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] text-slate-400">
+                            <span id="stage-status-1">Idle</span>
+                            <span id="stage-duration-1">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div id="stage-card-2" class="stage-node bg-slate-50 border border-slate-200 rounded-xl p-4 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stage 02</span>
+                            <span id="stage-icon-2" class="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-brain"></i>
+                            </span>
+                        </div>
+                        <h4 class="text-xs font-bold text-slate-800">Entity Extraction</h4>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Vendor, totals, line items, and bank remittance.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] text-slate-400">
+                            <span id="stage-status-2">Idle</span>
+                            <span id="stage-duration-2">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div id="stage-card-3" class="stage-node bg-slate-50 border border-slate-200 rounded-xl p-4 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stage 03</span>
+                            <span id="stage-icon-3" class="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-code-compare"></i>
+                            </span>
+                        </div>
+                        <h4 class="text-xs font-bold text-slate-800">PO Reconciliation</h4>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">2-Way / 3-Way match & cumulative PO draw tracking.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] text-slate-400">
+                            <span id="stage-status-3">Idle</span>
+                            <span id="stage-duration-3">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div id="stage-card-4" class="stage-node bg-slate-50 border border-slate-200 rounded-xl p-4 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stage 04</span>
+                            <span id="stage-icon-4" class="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+                        </div>
+                        <h4 class="text-xs font-bold text-slate-800">Policy & Anti-Fraud</h4>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Duplicate detection, bank wire check, & tolerance limits.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] text-slate-400">
+                            <span id="stage-status-4">Idle</span>
+                            <span id="stage-duration-4">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 5 -->
+                    <div id="stage-card-5" class="stage-node bg-slate-50 border border-slate-200 rounded-xl p-4 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stage 05</span>
+                            <span id="stage-icon-5" class="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-xs">
+                                <i class="fa-solid fa-gavel"></i>
+                            </span>
+                        </div>
+                        <h4 class="text-xs font-bold text-slate-800">Reasoned Decision</h4>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Autonomous approve, review hold, or vendor reject.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] text-slate-400">
+                            <span id="stage-status-5">Idle</span>
+                            <span id="stage-duration-5">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Stream Console Log -->
+                <div class="mt-4 bg-slate-900 rounded-xl p-3 font-mono text-xs text-slate-300 border border-slate-800 max-h-36 overflow-y-auto custom-scrollbar" id="live-console">
+                    <div class="text-slate-500">// Real-time execution log will appear here...</div>
+                </div>
+            </div>
+
+            <!-- Execution Results Section -->
+            <div id="execution-results-container" class="grid grid-cols-1 lg:grid-cols-12 gap-6 hidden">
+                
+                <!-- Left Column: Decision Card & Executive Breakdown (5 cols) -->
+                <div class="lg:col-span-5 space-y-6">
+                    
+                    <!-- Main Decision Card -->
+                    <div id="decision-banner-card" class="bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">System Verdict</span>
+                            <span id="decision-confidence-pill" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">Confidence: 98%</span>
+                        </div>
+
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div id="decision-badge-icon" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-sm">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h3 id="decision-title-text" class="text-xl font-bold tracking-tight">TOUCHLESS APPROVED</h3>
+                                <p id="decision-type-subtitle" class="text-xs font-medium text-slate-500">Direct ERP Export Qualified</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 text-xs text-slate-700 space-y-2">
+                            <div class="font-semibold text-slate-900 flex items-center space-x-1.5">
+                                <i class="fa-solid fa-comment-dots text-sky-600"></i>
+                                <span>Operational Explanation:</span>
+                            </div>
+                            <p id="decision-explanation-text" class="leading-relaxed text-slate-600"></p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">Recommended Action:</span>
+                            <span id="decision-action-text" class="font-bold text-slate-900 text-right"></span>
+                        </div>
+
+                        <!-- Vendor Notification Email Draft Accordion -->
+                        <div class="mt-4 pt-3 border-t border-slate-100">
+                            <button onclick="toggleEmailPreview()" class="w-full flex items-center justify-between text-xs font-semibold text-sky-700 hover:text-sky-800">
+                                <span><i class="fa-regular fa-envelope mr-1.5"></i> Auto-Drafted Vendor Communication</span>
+                                <i id="email-toggle-chevron" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+                            </button>
+                            <div id="email-preview-container" class="hidden mt-2 p-3 bg-slate-100 rounded-lg text-[11px] font-mono text-slate-700 border border-slate-200 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+
+                    <!-- Extracted Invoice Header Summary -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Extracted Invoice Metadata</h4>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                                <span class="text-slate-400 block text-[10px] font-semibold uppercase">Vendor Name</span>
+                                <span id="meta-vendor-name" class="font-bold text-slate-800 truncate block"></span>
+                            </div>
+                            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                                <span class="text-slate-400 block text-[10px] font-semibold uppercase">Invoice Number</span>
+                                <span id="meta-invoice-number" class="font-bold text-slate-800 truncate block"></span>
+                            </div>
+                            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                                <span class="text-slate-400 block text-[10px] font-semibold uppercase">Invoice Date</span>
+                                <span id="meta-invoice-date" class="font-bold text-slate-800 truncate block"></span>
+                            </div>
+                            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                                <span class="text-slate-400 block text-[10px] font-semibold uppercase">Invoice Total</span>
+                                <span id="meta-invoice-total" class="font-bold text-emerald-700 text-sm truncate block"></span>
+                            </div>
+                            <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100 col-span-2">
+                                <span class="text-slate-400 block text-[10px] font-semibold uppercase">Remittance Bank Routing</span>
+                                <span id="meta-bank-routing" class="font-bold text-slate-800 font-mono"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: 3-Way Reconciliation & Rule Evaluation (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- PO Reconciliation Diff Card -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">PO Reconciliation & Cumulative Balance</h4>
+                            <span id="reconciliation-badge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700"></span>
+                        </div>
+
+                        <!-- Cumulative Balance Progress Bar -->
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 mb-4 space-y-2">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="font-bold text-slate-700" id="reconcile-po-label">Matched Purchase Order</span>
+                                <span class="text-slate-500 font-mono" id="reconcile-po-amounts"></span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden flex">
+                                <div id="po-bar-prior" class="bg-slate-400 h-full" style="width: 0%" title="Previously Billed"></div>
+                                <div id="po-bar-current" class="bg-sky-600 h-full" style="width: 0%" title="This Invoice"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+                                <span id="po-label-prior">Prior: $0.00</span>
+                                <span id="po-label-current">This Inv: $0.00</span>
+                                <span id="po-label-remaining">Remaining: $0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Line Items Table -->
+                        <div class="border border-slate-200 rounded-xl overflow-hidden">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-2.5">Invoice Line Item</th>
+                                        <th class="p-2.5 text-center">Qty</th>
+                                        <th class="p-2.5 text-right">Unit Price</th>
+                                        <th class="p-2.5 text-right">Total</th>
+                                        <th class="p-2.5 text-center">PO Match</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="line-items-tbody" class="divide-y divide-slate-100 font-medium">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Comprehensive 6-Rule Checklist -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Enterprise Policy & Security Checklist</h4>
+                            <span class="text-xs text-slate-500">6 of 6 evaluated</span>
+                        </div>
+
+                        <div id="rules-checklist-container" class="space-y-2.5">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================ -->
+        <!-- TAB 2: AP EXECUTIVE DASHBOARD -->
+        <!-- ============================================================ -->
+        <section id="tab-dashboard" class="space-y-6 hidden">
+            
+            <!-- KPI Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                    <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Total Invoices</span>
+                    <span id="kpi-total-runs" class="text-2xl font-black text-slate-900 block">--</span>
+                    <span class="text-[10px] text-slate-400 mt-1 block">In processing ledger</span>
+                </div>
+
+                <div class="bg-white border border-emerald-200 rounded-2xl p-4 shadow-sm bg-gradient-to-br from-white to-emerald-50/40">
+                    <span class="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider block mb-1">Touchless STP Rate</span>
+                    <span id="kpi-touchless-rate" class="text-2xl font-black text-emerald-700 block">--%</span>
+                    <span class="text-[10px] text-emerald-600 mt-1 block">Straight-Through Processing</span>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                    <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Total Value Approved</span>
+                    <span id="kpi-total-value" class="text-2xl font-black text-slate-900 block">$0.00</span>
+                    <span class="text-[10px] text-slate-400 mt-1 block">Cleared for disbursement</span>
+                </div>
+
+                <div class="bg-white border border-amber-200 rounded-2xl p-4 shadow-sm">
+                    <span class="text-[11px] font-semibold text-amber-700 uppercase tracking-wider block mb-1">Pending Review</span>
+                    <span id="kpi-review-count" class="text-2xl font-black text-amber-700 block">--</span>
+                    <span class="text-[10px] text-amber-600 mt-1 block">Exceptions / Fraud holds</span>
+                </div>
+
+                <div class="bg-white border border-rose-200 rounded-2xl p-4 shadow-sm">
+                    <span class="text-[11px] font-semibold text-rose-700 uppercase tracking-wider block mb-1">Rejected</span>
+                    <span id="kpi-rejected-count" class="text-2xl font-black text-rose-700 block">--</span>
+                    <span class="text-[10px] text-rose-600 mt-1 block">Duplicates & compliance fails</span>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                    <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-1">Avg Latency</span>
+                    <span id="kpi-avg-latency" class="text-2xl font-black text-sky-700 block">-- ms</span>
+                    <span class="text-[10px] text-slate-400 mt-1 block">Autonomous pipeline speed</span>
+                </div>
+            </div>
+
+            <!-- Historical Runs Table Card -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Invoice Run Audit History</h3>
+                        <p class="text-xs text-slate-500">Permanent tamper-evident operational ledger across all pipeline runs</p>
+                    </div>
+
+                    <!-- Filter Chips -->
+                    <div class="flex items-center space-x-1.5 text-xs font-medium">
+                        <button onclick="filterRuns('ALL')" id="filter-btn-ALL" class="filter-chip px-3 py-1 rounded-lg bg-sky-600 text-white font-semibold">All</button>
+                        <button onclick="filterRuns('APPROVED')" id="filter-btn-APPROVED" class="filter-chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">Approved</button>
+                        <button onclick="filterRuns('NEEDS_REVIEW')" id="filter-btn-NEEDS_REVIEW" class="filter-chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">Needs Review</button>
+                        <button onclick="filterRuns('REJECTED')" id="filter-btn-REJECTED" class="filter-chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">Rejected</button>
+                    </div>
+                </div>
+
+                <!-- History Table -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3">Run ID / Timestamp</th>
+                                <th class="p-3">Invoice #</th>
+                                <th class="p-3">Vendor</th>
+                                <th class="p-3">Matched PO</th>
+                                <th class="p-3 text-right">Amount</th>
+                                <th class="p-3 text-center">Verdict</th>
+                                <th class="p-3 text-center">Latency</th>
+                                <th class="p-3 text-center">Audit Drilldown</th>
+                            </tr>
+                        </thead>
+                        <tbody id="runs-history-tbody" class="divide-y divide-slate-100 font-medium">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ============================================================ -->
+        <!-- TAB 3: PURCHASE ORDER EXPLORER -->
+        <!-- ============================================================ -->
+        <section id="tab-pos" class="space-y-6 hidden">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Procurement Master PO Ledger</h3>
+                        <p class="text-xs text-slate-500">Live purchase order budget caps, committed spend, and remaining balances</p>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">2-Way / 3-Way Matching Source</span>
+                </div>
+
+                <div id="pos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- PO cards injected dynamically -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================ -->
+        <!-- TAB 4: VENDOR REGISTRY & KYC -->
+        <!-- ============================================================ -->
+        <section id="tab-vendors" class="space-y-6 hidden">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Approved Vendor Master Directory & Bank Remittance</h3>
+                        <p class="text-xs text-slate-500">KYC verification, authorized wire routing, and configured tolerance thresholds</p>
+                    </div>
+                    <span class="text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        <i class="fa-solid fa-lock text-emerald-600 mr-1"></i> Anti-Fraud Guard Active
+                    </span>
+                </div>
+
+                <div id="vendors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Vendor cards injected dynamically -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Run Detail Audit Modal -->
+    <div id="audit-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200">
+            <div class="p-5 border-b border-slate-200 flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900" id="modal-title">Run Audit Details</h3>
+                    <p class="text-xs text-slate-500" id="modal-subtitle">Full operational audit trail and reason trace</p>
+                </div>
+                <button onclick="closeAuditModal()" class="text-slate-400 hover:text-slate-700 w-8 h-8 rounded-lg flex items-center justify-center hover:bg-slate-100">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-5" id="modal-body">
+                <!-- Injected dynamically -->
+            </div>
+            <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-end rounded-b-2xl">
+                <button onclick="closeAuditModal()" class="px-4 py-2 bg-slate-800 text-white rounded-lg text-xs font-semibold hover:bg-slate-900">
+                    Close Audit View
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script with cache buster -->
+    <script src="/static/js/app.js?v=2"></script>
+</body>
+</html>

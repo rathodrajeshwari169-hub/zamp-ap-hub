@@ -1,0 +1,174 @@
+{
+  "PO-2026-101": {
+    "po_number": "PO-2026-101",
+    "vendor_id": "VEND-001",
+    "vendor_name": "Acme Cloud Corp",
+    "issue_date": "2026-09-01",
+    "status": "CLOSED",
+    "description": "Enterprise Cloud Infrastructure & Hosting Q4",
+    "total_amount": 3500.0,
+    "previously_invoiced": 3500.0,
+    "remaining_balance": 0.0,
+    "currency": "USD",
+    "line_items": [
+      {
+        "item_id": "ITEM-101",
+        "description": "Cloud Compute Instances (c5.4xlarge)",
+        "quantity": 20,
+        "unit_price": 150.0,
+        "total": 3000.0
+      },
+      {
+        "item_id": "ITEM-102",
+        "description": "Premium Support SLA",
+        "quantity": 1,
+        "unit_price": 500.0,
+        "total": 500.0
+      }
+    ],
+    "invoices_billed": [
+      {
+        "invoice_number": "INV-2026-8812",
+        "amount": 3500.0,
+        "date": "2026-11-19",
+        "status": "APPROVED"
+      }
+    ]
+  },
+  "PO-2026-102": {
+    "po_number": "PO-2026-102",
+    "vendor_id": "VEND-002",
+    "vendor_name": "Apex Logistics LLC",
+    "issue_date": "2026-08-15",
+    "status": "PARTIALLY_INVOICED",
+    "description": "Regional Freight & Multi-Drop Warehouse Fulfillment",
+    "total_amount": 10000.0,
+    "previously_invoiced": 9200.0,
+    "remaining_balance": 800.0,
+    "currency": "USD",
+    "line_items": [
+      {
+        "item_id": "ITEM-201",
+        "description": "Regional Pallet Distribution (Batch A)",
+        "quantity": 1,
+        "unit_price": 5000.0,
+        "total": 5000.0
+      },
+      {
+        "item_id": "ITEM-202",
+        "description": "Regional Pallet Distribution (Batch B)",
+        "quantity": 1,
+        "unit_price": 4200.0,
+        "total": 4200.0
+      },
+      {
+        "item_id": "ITEM-203",
+        "description": "Fuel Surcharge Contingency Reserve",
+        "quantity": 1,
+        "unit_price": 800.0,
+        "total": 800.0
+      }
+    ],
+    "invoices_billed": [
+      {
+        "invoice_number": "INV-2026-8100",
+        "amount": 5000.0,
+        "date": "2026-09-10",
+        "status": "PAID"
+      },
+      {
+        "invoice_number": "INV-2026-9041",
+        "amount": 4200.0,
+        "date": "2026-11-19",
+        "status": "APPROVED"
+      }
+    ]
+  },
+  "PO-2026-103": {
+    "po_number": "PO-2026-103",
+    "vendor_id": "VEND-003",
+    "vendor_name": "NexGen Hardware Systems",
+    "issue_date": "2026-10-01",
+    "status": "CLOSED",
+    "description": "Developer Workstations & Dual-Monitor Hubs",
+    "total_amount": 5000.0,
+    "previously_invoiced": 5120.0,
+    "remaining_balance": 0.0,
+    "currency": "USD",
+    "line_items": [
+      {
+        "item_id": "ITEM-301",
+        "description": "Developer Workstation Pro Max",
+        "quantity": 2,
+        "unit_price": 2500.0,
+        "total": 5000.0
+      }
+    ],
+    "invoices_billed": [
+      {
+        "invoice_number": "INV-2026-7731",
+        "amount": 5120.0,
+        "date": "2026-11-19",
+        "status": "APPROVED"
+      }
+    ]
+  },
+  "PO-2026-104": {
+    "po_number": "PO-2026-104",
+    "vendor_id": "VEND-004",
+    "vendor_name": "Global Office Supplies",
+    "issue_date": "2026-10-05",
+    "status": "OPEN",
+    "description": "Ergonomic Chairs & Dual Monitor Mounting Arms",
+    "total_amount": 1850.0,
+    "previously_invoiced": 0.0,
+    "remaining_balance": 1850.0,
+    "currency": "USD",
+    "line_items": [
+      {
+        "item_id": "ITEM-401",
+        "description": "Ergonomic Mesh Task Chairs",
+        "quantity": 5,
+        "unit_price": 300.0,
+        "total": 1500.0
+      },
+      {
+        "item_id": "ITEM-402",
+        "description": "Dual Monitor Desk Mount Arms",
+        "quantity": 7,
+        "unit_price": 50.0,
+        "total": 350.0
+      }
+    ],
+    "invoices_billed": []
+  },
+  "PO-2026-105": {
+    "po_number": "PO-2026-105",
+    "vendor_id": "VEND-005",
+    "vendor_name": "Vertex Consulting Partners",
+    "issue_date": "2026-07-01",
+    "status": "CLOSED",
+    "description": "SOC2 Type II Security Compliance Audit",
+    "total_amount": 12500.0,
+    "previously_invoiced": 12500.0,
+    "remaining_balance": 0.0,
+    "currency": "USD",
+    "line_items": [
+      {
+        "item_id": "ITEM-501",
+        "description": "SOC2 Audit Milestone 1 & 2 Completion",
+        "quantity": 1,
+        "unit_price": 12500.0,
+        "total": 12500.0
+      }
+    ],
+    "invoices_billed": [
+      {
+        "invoice_number": "INV-2026-7011",
+        "amount": 12500.0,
+        "date": "2026-08-01",
+        "status": "PAID"
+      }
+    ]
+  }
+}

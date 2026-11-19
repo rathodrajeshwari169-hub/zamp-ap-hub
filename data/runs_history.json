@@ -1,0 +1,2656 @@
+[
+  {
+    "run_id": "RUN-20261119-144926",
+    "timestamp": "2026-11-19T14:49:26Z",
+    "filename": "06_missing_critical_data.pdf",
+    "invoice_number": null,
+    "vendor_name": null,
+    "vendor_id": null,
+    "po_number": null,
+    "invoice_total": 0.0,
+    "po_total": null,
+    "status": "REJECTED",
+    "decision_type": "COMPLIANCE_REJECTED",
+    "confidence_score": 0.0,
+    "latency_ms": 7742,
+    "summary": "Critical mandatory fields missing (Invoice #, Date, or Vendor Name unresolvable).",
+    "recommended_action": "Auto-request corrected invoice PDF from vendor.",
+    "vendor_email_draft": {
+      "subject": "REJECTED: Invoice #Unknown - Correction Required",
+      "body": "Dear Vendor Partner Accounts Receivable,\n\nWe are unable to process Invoice #Unknown due to the following exception:\n\nReason: Critical mandatory fields missing (Invoice #, Date, or Vendor Name unresolvable).\nAction Required: Auto-request corrected invoice PDF from vendor.\n\nPlease issue a revised invoice or contact our AP support desk.\n\nAccounts Payable Operations"
+    },
+    "extracted_data": {
+      "invoice_number": null,
+      "po_number": null,
+      "vendor_name": null,
+      "invoice_date": null,
+      "due_date": null,
+      "subtotal": 0.0,
+      "tax": 0.0,
+      "shipping": 0.0,
+      "total_amount": 0.0,
+      "remittance_bank": {
+        "bank_name": null,
+        "routing_number": null,
+        "account_number": null
+      },
+      "line_items": [],
+      "raw_text": "SCANNED DOCUMENT RECEIPT                                                        \nQuick Print & Freight Depo                                                      \nDate: October 2026                                                              \nItems:                                                                          \nAssorted packaging boxes and labels                                             \nAmount: $450.00                                                                 \nPaid via credit card authorization pending.                                     \nNo PO on file.                                                                  \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+      "confidence_score": 0.0,
+      "extraction_quality": "LOW"
+    },
+    "match_result": {
+      "vendor_matched": false,
+      "vendor": null,
+      "po_matched": false,
+      "po": null,
+      "match_method": "NONE",
+      "match_type": "NO_PO_FOUND",
+      "is_partial_draw": false,
+      "remaining_balance_before": 0.0,
+      "remaining_balance_after": 0.0,
+      "variance_amount": 0.0,
+      "variance_percent": 0.0,
+      "line_reconciliation": [],
+      "reconciliation_notes": [
+        "No matching purchase order found in the procurement ledger."
+      ]
+    },
+    "rule_evaluations": [
+      {
+        "rule_id": "RULE_MANDATORY_FIELDS",
+        "rule_name": "Mandatory Tax & Compliance Fields",
+        "status": "FAIL",
+        "severity": "CRITICAL",
+        "message": "Missing critical required invoice fields: Invoice Number, Invoice Date, Total Amount, Vendor Name.",
+        "details": {
+          "missing_fields": [
+            "Invoice Number",
+            "Invoice Date",
+            "Total Amount",
+            "Vendor Name"
+          ]
+        }
+      },
+      {
+        "rule_id": "RULE_DUPLICATE_CHECK",
+        "rule_name": "Duplicate Invoice Detection",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "No duplicate record found in procurement history or active runs.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_VENDOR_KYC",
+        "rule_name": "Approved Vendor Directory & KYC",
+        "status": "FAIL",
+        "severity": "CRITICAL",
+        "message": "Vendor 'None' is not registered in the Master Vendor Directory.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_PO_RECONCILIATION",
+        "rule_name": "Purchase Order 2-Way Match",
+        "status": "FAIL",
+        "severity": "CRITICAL",
+        "message": "No valid purchase order matched this invoice.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_BANK_REMITTANCE",
+        "rule_name": "Anti-Fraud Remittance Verification",
+        "status": "WARN",
+        "severity": "MEDIUM",
+        "message": "Cannot verify remittance bank details without matched vendor record.",
+        "details": {}
+      }
+    ],
+    "stage_logs": [
+      {
+        "stage_number": 1,
+        "stage_name": "Document Ingestion & Optical Parsing",
+        "status": "COMPLETED",
+        "duration_ms": 8,
+        "summary": "Ingested '06_missing_critical_data.pdf' (5021 characters extracted). Format verified.",
+        "details": {
+          "filename": "06_missing_critical_data.pdf",
+          "char_count": 5021
+        }
+      },
+      {
+        "stage_number": 2,
+        "stage_name": "Entity & Semantic Extraction",
+        "status": "WARNING",
+        "duration_ms": 7734,
+        "summary": "Extracted Invoice #UNKNOWN, Vendor: UNKNOWN, Total: $0.00 (Confidence: 0%).",
+        "details": {
+          "invoice_number": null,
+          "po_number": null,
+          "vendor_name": null,
+          "invoice_date": null,
+          "due_date": null,
+          "subtotal": 0.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total_amount": 0.0,
+          "remittance_bank": {
+            "bank_name": null,
+            "routing_number": null,
+            "account_number": null
+          },
+          "line_items": [],
+          "raw_text": "SCANNED DOCUMENT RECEIPT                                                        \nQuick Print & Freight Depo                                                      \nDate: October 2026                                                              \nItems:                                                                          \nAssorted packaging boxes and labels                                             \nAmount: $450.00                                                                 \nPaid via credit card authorization pending.                                     \nNo PO on file.                                                                  \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+          "confidence_score": 0.0,
+          "extraction_quality": "LOW"
+        }
+      },
+      {
+        "stage_number": 3,
+        "stage_name": "PO 2-Way / 3-Way Reconciliation",
+        "status": "WARNING",
+        "duration_ms": 0,
+        "summary": "PO Reconciliation: NO_PO_FOUND. No matching purchase order found in the procurement ledger.",
+        "details": {
+          "vendor_matched": false,
+          "vendor": null,
+          "po_matched": false,
+          "po": null,
+          "match_method": "NONE",
+          "match_type": "NO_PO_FOUND",
+          "is_partial_draw": false,
+          "remaining_balance_before": 0.0,
+          "remaining_balance_after": 0.0,
+          "variance_amount": 0.0,
+          "variance_percent": 0.0,
+          "line_reconciliation": [],
+          "reconciliation_notes": [
+            "No matching purchase order found in the procurement ledger."
+          ]
+        }
+      },
+      {
+        "stage_number": 4,
+        "stage_name": "Compliance, Fraud & Tolerance Engine",
+        "status": "FAILED",
+        "duration_ms": 0,
+        "summary": "Evaluated 6 enterprise rules: 1 Passed, 1 Warnings, 3 Failed.",
+        "details": [
+          {
+            "rule_id": "RULE_MANDATORY_FIELDS",
+            "rule_name": "Mandatory Tax & Compliance Fields",
+            "status": "FAIL",
+            "severity": "CRITICAL",
+            "message": "Missing critical required invoice fields: Invoice Number, Invoice Date, Total Amount, Vendor Name.",
+            "details": {
+              "missing_fields": [
+                "Invoice Number",
+                "Invoice Date",
+                "Total Amount",
+                "Vendor Name"
+              ]
+            }
+          },
+          {
+            "rule_id": "RULE_DUPLICATE_CHECK",
+            "rule_name": "Duplicate Invoice Detection",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "No duplicate record found in procurement history or active runs.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_VENDOR_KYC",
+            "rule_name": "Approved Vendor Directory & KYC",
+            "status": "FAIL",
+            "severity": "CRITICAL",
+            "message": "Vendor 'None' is not registered in the Master Vendor Directory.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_PO_RECONCILIATION",
+            "rule_name": "Purchase Order 2-Way Match",
+            "status": "FAIL",
+            "severity": "CRITICAL",
+            "message": "No valid purchase order matched this invoice.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_BANK_REMITTANCE",
+            "rule_name": "Anti-Fraud Remittance Verification",
+            "status": "WARN",
+            "severity": "MEDIUM",
+            "message": "Cannot verify remittance bank details without matched vendor record.",
+            "details": {}
+          }
+        ]
+      },
+      {
+        "stage_number": 5,
+        "stage_name": "Autonomous Decision & Audit Reasoning",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Final Decision: REJECTED (COMPLIANCE_REJECTED). Critical mandatory fields missing (Invoice #, Date, or Vendor Name unresolvable).",
+        "details": {
+          "decision_type": "COMPLIANCE_REJECTED",
+          "reason_summary": "Critical mandatory fields missing (Invoice #, Date, or Vendor Name unresolvable).",
+          "recommended_action": "Auto-request corrected invoice PDF from vendor."
+        }
+      }
+    ]
+  },
+  {
+    "run_id": "RUN-20261119-144916",
+    "timestamp": "2026-11-19T14:49:16Z",
+    "filename": "05_duplicate_invoice.pdf",
+    "invoice_number": "INV-2026-8100",
+    "vendor_name": "APEX LOGISTICS LLC",
+    "vendor_id": "VEND-002",
+    "po_number": "PO-2026-102",
+    "invoice_total": 5000.0,
+    "po_total": 10000.0,
+    "status": "REJECTED",
+    "decision_type": "DUPLICATE_REJECTED",
+    "confidence_score": 1.0,
+    "latency_ms": 3415,
+    "summary": "Duplicate invoice detected. Prior payment record exists in the system.",
+    "recommended_action": "Reject invoice and notify vendor of previous payment settlement.",
+    "vendor_email_draft": {
+      "subject": "REJECTED: Invoice #INV-2026-8100 - Correction Required",
+      "body": "Dear APEX LOGISTICS LLC Accounts Receivable,\n\nWe are unable to process Invoice #INV-2026-8100 due to the following exception:\n\nReason: Duplicate invoice detected. Prior payment record exists in the system.\nAction Required: Reject invoice and notify vendor of previous payment settlement.\n\nPlease issue a revised invoice or contact our AP support desk.\n\nAccounts Payable Operations"
+    },
+    "extracted_data": {
+      "invoice_number": "INV-2026-8100",
+      "po_number": "PO-2026-102",
+      "vendor_name": "APEX LOGISTICS LLC",
+      "invoice_date": "2026-09-10",
+      "due_date": "2026-09-25",
+      "subtotal": 5000.0,
+      "tax": 0.0,
+      "shipping": 0.0,
+      "total_amount": 5000.0,
+      "remittance_bank": {
+        "bank_name": "Bank of America",
+        "routing_number": "121000358",
+        "account_number": "5481920731"
+      },
+      "line_items": [
+        {
+          "description": "otal       \nRegional Pallet Distribution (Batch A)",
+          "quantity": 1,
+          "unit_price": 5000.0,
+          "total": 5000.0
+        }
+      ],
+      "raw_text": "APEX LOGISTICS LLC                                                              \n450 Harbor Boulevard, Newark, NJ 07102                                          \nTax ID: US-472910481 | Invoices: invoices@apexlogistics.io                      \n                                                                                \nINVOICE (RESUBMISSION)                                                          \nInvoice Number: INV-2026-8100                                                   \nInvoice Date: 2026-09-10                                                        \nDue Date: 2026-09-25                                                            \nPayment Terms: Net 15                                                           \nPurchase Order: PO-2026-102                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nRegional Pallet Distribution (Batch A)          1    $5,000.00  $5,000.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $5,000.00       \nTotal Due:                                                      $5,000.00       \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: Bank of America                                                      \nRouting Number: 121000358                                                       \nAccount Number: 5481920731                                                      \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+      "confidence_score": 1.0,
+      "extraction_quality": "HIGH"
+    },
+    "match_result": {
+      "vendor_matched": true,
+      "vendor": {
+        "id": "VEND-002",
+        "name": "Apex Logistics LLC",
+        "aliases": [
+          "Apex Logistics",
+          "Apex Freight Services",
+          "Apex Transport"
+        ],
+        "tax_id": "US-472910481",
+        "email": "invoices@apexlogistics.io",
+        "status": "APPROVED",
+        "remittance_bank": {
+          "bank_name": "Bank of America",
+          "routing_number": "121000358",
+          "account_number": "5481920731",
+          "account_display": "****7310"
+        },
+        "payment_terms": "Net 15",
+        "tolerance_percent": 3.0,
+        "tolerance_amount_max": 250.0
+      },
+      "po_matched": true,
+      "po": {
+        "po_number": "PO-2026-102",
+        "vendor_id": "VEND-002",
+        "vendor_name": "Apex Logistics LLC",
+        "issue_date": "2026-08-15",
+        "status": "PARTIALLY_INVOICED",
+        "description": "Regional Freight & Multi-Drop Warehouse Fulfillment",
+        "total_amount": 10000.0,
+        "previously_invoiced": 9200.0,
+        "remaining_balance": 800.0,
+        "currency": "USD",
+        "line_items": [
+          {
+            "item_id": "ITEM-201",
+            "description": "Regional Pallet Distribution (Batch A)",
+            "quantity": 1,
+            "unit_price": 5000.0,
+            "total": 5000.0
+          },
+          {
+            "item_id": "ITEM-202",
+            "description": "Regional Pallet Distribution (Batch B)",
+            "quantity": 1,
+            "unit_price": 4200.0,
+            "total": 4200.0
+          },
+          {
+            "item_id": "ITEM-203",
+            "description": "Fuel Surcharge Contingency Reserve",
+            "quantity": 1,
+            "unit_price": 800.0,
+            "total": 800.0
+          }
+        ],
+        "invoices_billed": [
+          {
+            "invoice_number": "INV-2026-8100",
+            "amount": 5000.0,
+            "date": "2026-09-10",
+            "status": "PAID"
+          },
+          {
+            "invoice_number": "INV-2026-9041",
+            "amount": 4200.0,
+            "date": "2026-11-19",
+            "status": "APPROVED"
+          }
+        ]
+      },
+      "match_method": "EXPLICIT_PO_NUMBER",
+      "match_type": "OVER_BILLING",
+      "is_partial_draw": false,
+      "remaining_balance_before": 800.0,
+      "remaining_balance_after": 0.0,
+      "variance_amount": 4200.0,
+      "variance_percent": 525.0,
+      "line_reconciliation": [
+        {
+          "invoice_item": {
+            "description": "otal       \nRegional Pallet Distribution (Batch A)",
+            "quantity": 1,
+            "unit_price": 5000.0,
+            "total": 5000.0
+          },
+          "po_item": {
+            "item_id": "ITEM-201",
+            "description": "Regional Pallet Distribution (Batch A)",
+            "quantity": 1,
+            "unit_price": 5000.0,
+            "total": 5000.0
+          },
+          "match_score": 0.86,
+          "matched": true,
+          "qty_match": true,
+          "price_match": true
+        }
+      ],
+      "reconciliation_notes": [
+        "Invoice total ($5,000.00) exceeds remaining PO balance ($800.00) by $4,200.00 (525.0%)."
+      ]
+    },
+    "rule_evaluations": [
+      {
+        "rule_id": "RULE_MANDATORY_FIELDS",
+        "rule_name": "Mandatory Tax & Compliance Fields",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "All required tax and invoice identification fields are present.",
+        "details": {
+          "invoice_number": "INV-2026-8100",
+          "date": "2026-09-10",
+          "total": 5000.0
+        }
+      },
+      {
+        "rule_id": "RULE_DUPLICATE_CHECK",
+        "rule_name": "Duplicate Invoice Detection",
+        "status": "FAIL",
+        "severity": "CRITICAL",
+        "message": "Duplicate invoice detected! Invoice #INV-2026-8100 was already processed (Prior Run RUN-20261115-091422 on 2026-11-15T09:14:22Z).",
+        "details": {
+          "duplicate_source": "Prior Run RUN-20261115-091422 on 2026-11-15T09:14:22Z"
+        }
+      },
+      {
+        "rule_id": "RULE_VENDOR_KYC",
+        "rule_name": "Approved Vendor Directory & KYC",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Vendor verified: Apex Logistics LLC (ID: VEND-002, Tax ID: US-472910481).",
+        "details": {
+          "vendor_id": "VEND-002",
+          "terms": "Net 15"
+        }
+      },
+      {
+        "rule_id": "RULE_PO_RECONCILIATION",
+        "rule_name": "Purchase Order Tolerance Policy",
+        "status": "FAIL",
+        "severity": "HIGH",
+        "message": "Over-billing exceeds allowable tolerance! Variance is $4,200.00 (525.0%), exceeding limit of 3.0% / $250.00.",
+        "details": {
+          "variance_amount": 4200.0,
+          "variance_percent": 525.0,
+          "allowed_percent": 3.0
+        }
+      },
+      {
+        "rule_id": "RULE_BANK_REMITTANCE",
+        "rule_name": "Anti-Fraud Remittance Verification",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Remittance bank details verified against approved record (Bank of America).",
+        "details": {
+          "bank_name": "Bank of America"
+        }
+      },
+      {
+        "rule_id": "RULE_TAX_MATH",
+        "rule_name": "Tax & Line-Item Mathematical Integrity",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Financial arithmetic verified (Subtotal: $5,000.00, Tax: $0.00, Shipping: $0.00).",
+        "details": {
+          "subtotal": 5000.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total": 5000.0
+        }
+      }
+    ],
+    "stage_logs": [
+      {
+        "stage_number": 1,
+        "stage_name": "Document Ingestion & Optical Parsing",
+        "status": "COMPLETED",
+        "duration_ms": 13,
+        "summary": "Ingested '05_duplicate_invoice.pdf' (5021 characters extracted). Format verified.",
+        "details": {
+          "filename": "05_duplicate_invoice.pdf",
+          "char_count": 5021
+        }
+      },
+      {
+        "stage_number": 2,
+        "stage_name": "Entity & Semantic Extraction",
+        "status": "COMPLETED",
+        "duration_ms": 3401,
+        "summary": "Extracted Invoice #INV-2026-8100, Vendor: APEX LOGISTICS LLC, Total: $5,000.00 (Confidence: 100%).",
+        "details": {
+          "invoice_number": "INV-2026-8100",
+          "po_number": "PO-2026-102",
+          "vendor_name": "APEX LOGISTICS LLC",
+          "invoice_date": "2026-09-10",
+          "due_date": "2026-09-25",
+          "subtotal": 5000.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total_amount": 5000.0,
+          "remittance_bank": {
+            "bank_name": "Bank of America",
+            "routing_number": "121000358",
+            "account_number": "5481920731"
+          },
+          "line_items": [
+            {
+              "description": "otal       \nRegional Pallet Distribution (Batch A)",
+              "quantity": 1,
+              "unit_price": 5000.0,
+              "total": 5000.0
+            }
+          ],
+          "raw_text": "APEX LOGISTICS LLC                                                              \n450 Harbor Boulevard, Newark, NJ 07102                                          \nTax ID: US-472910481 | Invoices: invoices@apexlogistics.io                      \n                                                                                \nINVOICE (RESUBMISSION)                                                          \nInvoice Number: INV-2026-8100                                                   \nInvoice Date: 2026-09-10                                                        \nDue Date: 2026-09-25                                                            \nPayment Terms: Net 15                                                           \nPurchase Order: PO-2026-102                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nRegional Pallet Distribution (Batch A)          1    $5,000.00  $5,000.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $5,000.00       \nTotal Due:                                                      $5,000.00       \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: Bank of America                                                      \nRouting Number: 121000358                                                       \nAccount Number: 5481920731                                                      \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+          "confidence_score": 1.0,
+          "extraction_quality": "HIGH"
+        }
+      },
+      {
+        "stage_number": 3,
+        "stage_name": "PO 2-Way / 3-Way Reconciliation",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "PO Reconciliation: OVER_BILLING. Invoice total ($5,000.00) exceeds remaining PO balance ($800.00) by $4,200.00 (525.0%).",
+        "details": {
+          "vendor_matched": true,
+          "vendor": {
+            "id": "VEND-002",
+            "name": "Apex Logistics LLC",
+            "aliases": [
+              "Apex Logistics",
+              "Apex Freight Services",
+              "Apex Transport"
+            ],
+            "tax_id": "US-472910481",
+            "email": "invoices@apexlogistics.io",
+            "status": "APPROVED",
+            "remittance_bank": {
+              "bank_name": "Bank of America",
+              "routing_number": "121000358",
+              "account_number": "5481920731",
+              "account_display": "****7310"
+            },
+            "payment_terms": "Net 15",
+            "tolerance_percent": 3.0,
+            "tolerance_amount_max": 250.0
+          },
+          "po_matched": true,
+          "po": {
+            "po_number": "PO-2026-102",
+            "vendor_id": "VEND-002",
+            "vendor_name": "Apex Logistics LLC",
+            "issue_date": "2026-08-15",
+            "status": "PARTIALLY_INVOICED",
+            "description": "Regional Freight & Multi-Drop Warehouse Fulfillment",
+            "total_amount": 10000.0,
+            "previously_invoiced": 9200.0,
+            "remaining_balance": 800.0,
+            "currency": "USD",
+            "line_items": [
+              {
+                "item_id": "ITEM-201",
+                "description": "Regional Pallet Distribution (Batch A)",
+                "quantity": 1,
+                "unit_price": 5000.0,
+                "total": 5000.0
+              },
+              {
+                "item_id": "ITEM-202",
+                "description": "Regional Pallet Distribution (Batch B)",
+                "quantity": 1,
+                "unit_price": 4200.0,
+                "total": 4200.0
+              },
+              {
+                "item_id": "ITEM-203",
+                "description": "Fuel Surcharge Contingency Reserve",
+                "quantity": 1,
+                "unit_price": 800.0,
+                "total": 800.0
+              }
+            ],
+            "invoices_billed": [
+              {
+                "invoice_number": "INV-2026-8100",
+                "amount": 5000.0,
+                "date": "2026-09-10",
+                "status": "PAID"
+              },
+              {
+                "invoice_number": "INV-2026-9041",
+                "amount": 4200.0,
+                "date": "2026-11-19",
+                "status": "APPROVED"
+              }
+            ]
+          },
+          "match_method": "EXPLICIT_PO_NUMBER",
+          "match_type": "OVER_BILLING",
+          "is_partial_draw": false,
+          "remaining_balance_before": 800.0,
+          "remaining_balance_after": 0.0,
+          "variance_amount": 4200.0,
+          "variance_percent": 525.0,
+          "line_reconciliation": [
+            {
+              "invoice_item": {
+                "description": "otal       \nRegional Pallet Distribution (Batch A)",
+                "quantity": 1,
+                "unit_price": 5000.0,
+                "total": 5000.0
+              },
+              "po_item": {
+                "item_id": "ITEM-201",
+                "description": "Regional Pallet Distribution (Batch A)",
+                "quantity": 1,
+                "unit_price": 5000.0,
+                "total": 5000.0
+              },
+              "match_score": 0.86,
+              "matched": true,
+              "qty_match": true,
+              "price_match": true
+            }
+          ],
+          "reconciliation_notes": [
+            "Invoice total ($5,000.00) exceeds remaining PO balance ($800.00) by $4,200.00 (525.0%)."
+          ]
+        }
+      },
+      {
+        "stage_number": 4,
+        "stage_name": "Compliance, Fraud & Tolerance Engine",
+        "status": "FAILED",
+        "duration_ms": 0,
+        "summary": "Evaluated 6 enterprise rules: 4 Passed, 0 Warnings, 2 Failed.",
+        "details": [
+          {
+            "rule_id": "RULE_MANDATORY_FIELDS",
+            "rule_name": "Mandatory Tax & Compliance Fields",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "All required tax and invoice identification fields are present.",
+            "details": {
+              "invoice_number": "INV-2026-8100",
+              "date": "2026-09-10",
+              "total": 5000.0
+            }
+          },
+          {
+            "rule_id": "RULE_DUPLICATE_CHECK",
+            "rule_name": "Duplicate Invoice Detection",
+            "status": "FAIL",
+            "severity": "CRITICAL",
+            "message": "Duplicate invoice detected! Invoice #INV-2026-8100 was already processed (Prior Run RUN-20261115-091422 on 2026-11-15T09:14:22Z).",
+            "details": {
+              "duplicate_source": "Prior Run RUN-20261115-091422 on 2026-11-15T09:14:22Z"
+            }
+          },
+          {
+            "rule_id": "RULE_VENDOR_KYC",
+            "rule_name": "Approved Vendor Directory & KYC",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Vendor verified: Apex Logistics LLC (ID: VEND-002, Tax ID: US-472910481).",
+            "details": {
+              "vendor_id": "VEND-002",
+              "terms": "Net 15"
+            }
+          },
+          {
+            "rule_id": "RULE_PO_RECONCILIATION",
+            "rule_name": "Purchase Order Tolerance Policy",
+            "status": "FAIL",
+            "severity": "HIGH",
+            "message": "Over-billing exceeds allowable tolerance! Variance is $4,200.00 (525.0%), exceeding limit of 3.0% / $250.00.",
+            "details": {
+              "variance_amount": 4200.0,
+              "variance_percent": 525.0,
+              "allowed_percent": 3.0
+            }
+          },
+          {
+            "rule_id": "RULE_BANK_REMITTANCE",
+            "rule_name": "Anti-Fraud Remittance Verification",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Remittance bank details verified against approved record (Bank of America).",
+            "details": {
+              "bank_name": "Bank of America"
+            }
+          },
+          {
+            "rule_id": "RULE_TAX_MATH",
+            "rule_name": "Tax & Line-Item Mathematical Integrity",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Financial arithmetic verified (Subtotal: $5,000.00, Tax: $0.00, Shipping: $0.00).",
+            "details": {
+              "subtotal": 5000.0,
+              "tax": 0.0,
+              "shipping": 0.0,
+              "total": 5000.0
+            }
+          }
+        ]
+      },
+      {
+        "stage_number": 5,
+        "stage_name": "Autonomous Decision & Audit Reasoning",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Final Decision: REJECTED (DUPLICATE_REJECTED). Duplicate invoice detected. Prior payment record exists in the system.",
+        "details": {
+          "decision_type": "DUPLICATE_REJECTED",
+          "reason_summary": "Duplicate invoice detected. Prior payment record exists in the system.",
+          "recommended_action": "Reject invoice and notify vendor of previous payment settlement."
+        }
+      }
+    ]
+  },
+  {
+    "run_id": "RUN-20261119-144910",
+    "timestamp": "2026-11-19T14:49:10Z",
+    "filename": "04_bank_fraud_alert_global.pdf",
+    "invoice_number": "INV-2026-6620",
+    "vendor_name": "GLOBAL OFFICE SUPPLIES",
+    "vendor_id": "VEND-004",
+    "po_number": "PO-2026-104",
+    "invoice_total": 1850.0,
+    "po_total": 1850.0,
+    "status": "NEEDS_REVIEW",
+    "decision_type": "FRAUD_SECURITY_HOLD",
+    "confidence_score": 1.0,
+    "latency_ms": 2921,
+    "summary": "CRITICAL SECURITY HOLD: Remittance bank routing mismatch against Vendor Master File. Possible wire diversion fraud.",
+    "recommended_action": "Escalate immediately to AP Security / Vendor Management for verbal callback verification.",
+    "vendor_email_draft": {
+      "subject": "ACTION REQUIRED: Verification Hold on Invoice #INV-2026-6620 - GLOBAL OFFICE SUPPLIES",
+      "body": "Dear GLOBAL OFFICE SUPPLIES Accounts Receivable,\n\nYour Invoice #INV-2026-6620 for $1,850.00 is currently undergoing secondary verification.\n\nReason for hold: CRITICAL SECURITY HOLD: Remittance bank routing mismatch against Vendor Master File. Possible wire diversion fraud.\nNext Step: Escalate immediately to AP Security / Vendor Management for verbal callback verification.\n\nOur team will reach out if additional documentation or confirmation is required.\n\nAccounts Payable Operations"
+    },
+    "extracted_data": {
+      "invoice_number": "INV-2026-6620",
+      "po_number": "PO-2026-104",
+      "vendor_name": "GLOBAL OFFICE SUPPLIES",
+      "invoice_date": "2026-10-22",
+      "due_date": "2026-11-21",
+      "subtotal": 1850.0,
+      "tax": 0.0,
+      "shipping": 0.0,
+      "total_amount": 1850.0,
+      "remittance_bank": {
+        "bank_name": "First Offshore Wire Bank",
+        "routing_number": "999999999",
+        "account_number": "8888777766"
+      },
+      "line_items": [
+        {
+          "description": "Price      Total       \nErgonomic Mesh Task Chairs",
+          "quantity": 5,
+          "unit_price": 300.0,
+          "total": 1500.0
+        },
+        {
+          "description": "Dual Monitor Desk Mount Arms",
+          "quantity": 7,
+          "unit_price": 50.0,
+          "total": 350.0
+        }
+      ],
+      "raw_text": "GLOBAL OFFICE SUPPLIES                                                          \n120 Broadway Avenue, New York, NY 10006                                         \nTax ID: US-192840192 | Email: finance@globalofficesupply.com                    \n                                                                                \nINVOICE                                                                         \nInvoice Number: INV-2026-6620                                                   \nInvoice Date: 2026-10-22                                                        \nDue Date: 2026-11-21                                                            \nPayment Terms: Net 30                                                           \nPurchase Order: PO-2026-104                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nErgonomic Mesh Task Chairs                      5      $300.00  $1,500.00       \nDual Monitor Desk Mount Arms                    7       $50.00    $350.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $1,850.00       \nTax:                                                                $0.00       \nTotal Due:                                                      $1,850.00       \n                                                                                \n**URGENT REMITTANCE UPDATE - NEW WIRE ROUTING**:                                \nBank Name: First Offshore Wire Bank                                             \nRouting Number: 999999999                                                       \nAccount Number: 8888777766                                                      \n(Please send payment immediately to this updated routing account)               \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+      "confidence_score": 1.0,
+      "extraction_quality": "HIGH"
+    },
+    "match_result": {
+      "vendor_matched": true,
+      "vendor": {
+        "id": "VEND-004",
+        "name": "Global Office Supplies",
+        "aliases": [
+          "Global Office Supplies Inc",
+          "Global Office",
+          "GOS Supply"
+        ],
+        "tax_id": "US-192840192",
+        "email": "finance@globalofficesupply.com",
+        "status": "APPROVED",
+        "remittance_bank": {
+          "bank_name": "Citibank N.A.",
+          "routing_number": "026009593",
+          "account_number": "1129481145",
+          "account_display": "****1145"
+        },
+        "payment_terms": "Net 30",
+        "tolerance_percent": 1.0,
+        "tolerance_amount_max": 50.0
+      },
+      "po_matched": true,
+      "po": {
+        "po_number": "PO-2026-104",
+        "vendor_id": "VEND-004",
+        "vendor_name": "Global Office Supplies",
+        "issue_date": "2026-10-05",
+        "status": "OPEN",
+        "description": "Ergonomic Chairs & Dual Monitor Mounting Arms",
+        "total_amount": 1850.0,
+        "previously_invoiced": 0.0,
+        "remaining_balance": 1850.0,
+        "currency": "USD",
+        "line_items": [
+          {
+            "item_id": "ITEM-401",
+            "description": "Ergonomic Mesh Task Chairs",
+            "quantity": 5,
+            "unit_price": 300.0,
+            "total": 1500.0
+          },
+          {
+            "item_id": "ITEM-402",
+            "description": "Dual Monitor Desk Mount Arms",
+            "quantity": 7,
+            "unit_price": 50.0,
+            "total": 350.0
+          }
+        ],
+        "invoices_billed": []
+      },
+      "match_method": "EXPLICIT_PO_NUMBER",
+      "match_type": "EXACT_MATCH",
+      "is_partial_draw": false,
+      "remaining_balance_before": 1850.0,
+      "remaining_balance_after": 0.0,
+      "variance_amount": 0.0,
+      "variance_percent": 0.0,
+      "line_reconciliation": [
+        {
+          "invoice_item": {
+            "description": "Price      Total       \nErgonomic Mesh Task Chairs",
+            "quantity": 5,
+            "unit_price": 300.0,
+            "total": 1500.0
+          },
+          "po_item": {
+            "item_id": "ITEM-401",
+            "description": "Ergonomic Mesh Task Chairs",
+            "quantity": 5,
+            "unit_price": 300.0,
+            "total": 1500.0
+          },
+          "match_score": 0.68,
+          "matched": true,
+          "qty_match": true,
+          "price_match": true
+        },
+        {
+          "invoice_item": {
+            "description": "Dual Monitor Desk Mount Arms",
+            "quantity": 7,
+            "unit_price": 50.0,
+            "total": 350.0
+          },
+          "po_item": {
+            "item_id": "ITEM-402",
+            "description": "Dual Monitor Desk Mount Arms",
+            "quantity": 7,
+            "unit_price": 50.0,
+            "total": 350.0
+          },
+          "match_score": 1.0,
+          "matched": true,
+          "qty_match": true,
+          "price_match": true
+        }
+      ],
+      "reconciliation_notes": [
+        "Exact 100% 2-way match against PO-2026-104."
+      ]
+    },
+    "rule_evaluations": [
+      {
+        "rule_id": "RULE_MANDATORY_FIELDS",
+        "rule_name": "Mandatory Tax & Compliance Fields",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "All required tax and invoice identification fields are present.",
+        "details": {
+          "invoice_number": "INV-2026-6620",
+          "date": "2026-10-22",
+          "total": 1850.0
+        }
+      },
+      {
+        "rule_id": "RULE_DUPLICATE_CHECK",
+        "rule_name": "Duplicate Invoice Detection",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "No duplicate record found in procurement history or active runs.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_VENDOR_KYC",
+        "rule_name": "Approved Vendor Directory & KYC",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Vendor verified: Global Office Supplies (ID: VEND-004, Tax ID: US-192840192).",
+        "details": {
+          "vendor_id": "VEND-004",
+          "terms": "Net 30"
+        }
+      },
+      {
+        "rule_id": "RULE_PO_RECONCILIATION",
+        "rule_name": "Purchase Order 2-Way Match",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Exact match with PO PO-2026-104 remaining balance ($1,850.00).",
+        "details": {
+          "match_type": "EXACT_MATCH",
+          "remaining": 1850.0
+        }
+      },
+      {
+        "rule_id": "RULE_BANK_REMITTANCE",
+        "rule_name": "Anti-Fraud Remittance Verification",
+        "status": "FAIL",
+        "severity": "CRITICAL",
+        "message": "SECURITY ALERT: Remittance bank routing or account on invoice does not match Master Vendor record! (Invoice Routing: 999999999, Expected: 026009593). Potential payment diversion fraud.",
+        "details": {
+          "invoice_routing": "999999999",
+          "expected_routing": "026009593",
+          "invoice_account_tail": "7766",
+          "expected_account_tail": "1145"
+        }
+      },
+      {
+        "rule_id": "RULE_TAX_MATH",
+        "rule_name": "Tax & Line-Item Mathematical Integrity",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Financial arithmetic verified (Subtotal: $1,850.00, Tax: $0.00, Shipping: $0.00).",
+        "details": {
+          "subtotal": 1850.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total": 1850.0
+        }
+      }
+    ],
+    "stage_logs": [
+      {
+        "stage_number": 1,
+        "stage_name": "Document Ingestion & Optical Parsing",
+        "status": "COMPLETED",
+        "duration_ms": 8,
+        "summary": "Ingested '04_bank_fraud_alert_global.pdf' (5021 characters extracted). Format verified.",
+        "details": {
+          "filename": "04_bank_fraud_alert_global.pdf",
+          "char_count": 5021
+        }
+      },
+      {
+        "stage_number": 2,
+        "stage_name": "Entity & Semantic Extraction",
+        "status": "COMPLETED",
+        "duration_ms": 2912,
+        "summary": "Extracted Invoice #INV-2026-6620, Vendor: GLOBAL OFFICE SUPPLIES, Total: $1,850.00 (Confidence: 100%).",
+        "details": {
+          "invoice_number": "INV-2026-6620",
+          "po_number": "PO-2026-104",
+          "vendor_name": "GLOBAL OFFICE SUPPLIES",
+          "invoice_date": "2026-10-22",
+          "due_date": "2026-11-21",
+          "subtotal": 1850.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total_amount": 1850.0,
+          "remittance_bank": {
+            "bank_name": "First Offshore Wire Bank",
+            "routing_number": "999999999",
+            "account_number": "8888777766"
+          },
+          "line_items": [
+            {
+              "description": "Price      Total       \nErgonomic Mesh Task Chairs",
+              "quantity": 5,
+              "unit_price": 300.0,
+              "total": 1500.0
+            },
+            {
+              "description": "Dual Monitor Desk Mount Arms",
+              "quantity": 7,
+              "unit_price": 50.0,
+              "total": 350.0
+            }
+          ],
+          "raw_text": "GLOBAL OFFICE SUPPLIES                                                          \n120 Broadway Avenue, New York, NY 10006                                         \nTax ID: US-192840192 | Email: finance@globalofficesupply.com                    \n                                                                                \nINVOICE                                                                         \nInvoice Number: INV-2026-6620                                                   \nInvoice Date: 2026-10-22                                                        \nDue Date: 2026-11-21                                                            \nPayment Terms: Net 30                                                           \nPurchase Order: PO-2026-104                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nErgonomic Mesh Task Chairs                      5      $300.00  $1,500.00       \nDual Monitor Desk Mount Arms                    7       $50.00    $350.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $1,850.00       \nTax:                                                                $0.00       \nTotal Due:                                                      $1,850.00       \n                                                                                \n**URGENT REMITTANCE UPDATE - NEW WIRE ROUTING**:                                \nBank Name: First Offshore Wire Bank                                             \nRouting Number: 999999999                                                       \nAccount Number: 8888777766                                                      \n(Please send payment immediately to this updated routing account)               \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+          "confidence_score": 1.0,
+          "extraction_quality": "HIGH"
+        }
+      },
+      {
+        "stage_number": 3,
+        "stage_name": "PO 2-Way / 3-Way Reconciliation",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "PO Reconciliation: EXACT_MATCH. Exact 100% 2-way match against PO-2026-104.",
+        "details": {
+          "vendor_matched": true,
+          "vendor": {
+            "id": "VEND-004",
+            "name": "Global Office Supplies",
+            "aliases": [
+              "Global Office Supplies Inc",
+              "Global Office",
+              "GOS Supply"
+            ],
+            "tax_id": "US-192840192",
+            "email": "finance@globalofficesupply.com",
+            "status": "APPROVED",
+            "remittance_bank": {
+              "bank_name": "Citibank N.A.",
+              "routing_number": "026009593",
+              "account_number": "1129481145",
+              "account_display": "****1145"
+            },
+            "payment_terms": "Net 30",
+            "tolerance_percent": 1.0,
+            "tolerance_amount_max": 50.0
+          },
+          "po_matched": true,
+          "po": {
+            "po_number": "PO-2026-104",
+            "vendor_id": "VEND-004",
+            "vendor_name": "Global Office Supplies",
+            "issue_date": "2026-10-05",
+            "status": "OPEN",
+            "description": "Ergonomic Chairs & Dual Monitor Mounting Arms",
+            "total_amount": 1850.0,
+            "previously_invoiced": 0.0,
+            "remaining_balance": 1850.0,
+            "currency": "USD",
+            "line_items": [
+              {
+                "item_id": "ITEM-401",
+                "description": "Ergonomic Mesh Task Chairs",
+                "quantity": 5,
+                "unit_price": 300.0,
+                "total": 1500.0
+              },
+              {
+                "item_id": "ITEM-402",
+                "description": "Dual Monitor Desk Mount Arms",
+                "quantity": 7,
+                "unit_price": 50.0,
+                "total": 350.0
+              }
+            ],
+            "invoices_billed": []
+          },
+          "match_method": "EXPLICIT_PO_NUMBER",
+          "match_type": "EXACT_MATCH",
+          "is_partial_draw": false,
+          "remaining_balance_before": 1850.0,
+          "remaining_balance_after": 0.0,
+          "variance_amount": 0.0,
+          "variance_percent": 0.0,
+          "line_reconciliation": [
+            {
+              "invoice_item": {
+                "description": "Price      Total       \nErgonomic Mesh Task Chairs",
+                "quantity": 5,
+                "unit_price": 300.0,
+                "total": 1500.0
+              },
+              "po_item": {
+                "item_id": "ITEM-401",
+                "description": "Ergonomic Mesh Task Chairs",
+                "quantity": 5,
+                "unit_price": 300.0,
+                "total": 1500.0
+              },
+              "match_score": 0.68,
+              "matched": true,
+              "qty_match": true,
+              "price_match": true
+            },
+            {
+              "invoice_item": {
+                "description": "Dual Monitor Desk Mount Arms",
+                "quantity": 7,
+                "unit_price": 50.0,
+                "total": 350.0
+              },
+              "po_item": {
+                "item_id": "ITEM-402",
+                "description": "Dual Monitor Desk Mount Arms",
+                "quantity": 7,
+                "unit_price": 50.0,
+                "total": 350.0
+              },
+              "match_score": 1.0,
+              "matched": true,
+              "qty_match": true,
+              "price_match": true
+            }
+          ],
+          "reconciliation_notes": [
+            "Exact 100% 2-way match against PO-2026-104."
+          ]
+        }
+      },
+      {
+        "stage_number": 4,
+        "stage_name": "Compliance, Fraud & Tolerance Engine",
+        "status": "FAILED",
+        "duration_ms": 0,
+        "summary": "Evaluated 6 enterprise rules: 5 Passed, 0 Warnings, 1 Failed.",
+        "details": [
+          {
+            "rule_id": "RULE_MANDATORY_FIELDS",
+            "rule_name": "Mandatory Tax & Compliance Fields",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "All required tax and invoice identification fields are present.",
+            "details": {
+              "invoice_number": "INV-2026-6620",
+              "date": "2026-10-22",
+              "total": 1850.0
+            }
+          },
+          {
+            "rule_id": "RULE_DUPLICATE_CHECK",
+            "rule_name": "Duplicate Invoice Detection",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "No duplicate record found in procurement history or active runs.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_VENDOR_KYC",
+            "rule_name": "Approved Vendor Directory & KYC",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Vendor verified: Global Office Supplies (ID: VEND-004, Tax ID: US-192840192).",
+            "details": {
+              "vendor_id": "VEND-004",
+              "terms": "Net 30"
+            }
+          },
+          {
+            "rule_id": "RULE_PO_RECONCILIATION",
+            "rule_name": "Purchase Order 2-Way Match",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Exact match with PO PO-2026-104 remaining balance ($1,850.00).",
+            "details": {
+              "match_type": "EXACT_MATCH",
+              "remaining": 1850.0
+            }
+          },
+          {
+            "rule_id": "RULE_BANK_REMITTANCE",
+            "rule_name": "Anti-Fraud Remittance Verification",
+            "status": "FAIL",
+            "severity": "CRITICAL",
+            "message": "SECURITY ALERT: Remittance bank routing or account on invoice does not match Master Vendor record! (Invoice Routing: 999999999, Expected: 026009593). Potential payment diversion fraud.",
+            "details": {
+              "invoice_routing": "999999999",
+              "expected_routing": "026009593",
+              "invoice_account_tail": "7766",
+              "expected_account_tail": "1145"
+            }
+          },
+          {
+            "rule_id": "RULE_TAX_MATH",
+            "rule_name": "Tax & Line-Item Mathematical Integrity",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Financial arithmetic verified (Subtotal: $1,850.00, Tax: $0.00, Shipping: $0.00).",
+            "details": {
+              "subtotal": 1850.0,
+              "tax": 0.0,
+              "shipping": 0.0,
+              "total": 1850.0
+            }
+          }
+        ]
+      },
+      {
+        "stage_number": 5,
+        "stage_name": "Autonomous Decision & Audit Reasoning",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Final Decision: NEEDS_REVIEW (FRAUD_SECURITY_HOLD). CRITICAL SECURITY HOLD: Remittance bank routing mismatch against Vendor Master File. Possible wire diversion fraud.",
+        "details": {
+          "decision_type": "FRAUD_SECURITY_HOLD",
+          "reason_summary": "CRITICAL SECURITY HOLD: Remittance bank routing mismatch against Vendor Master File. Possible wire diversion fraud.",
+          "recommended_action": "Escalate immediately to AP Security / Vendor Management for verbal callback verification."
+        }
+      }
+    ]
+  },
+  {
+    "run_id": "RUN-20261119-144905",
+    "timestamp": "2026-11-19T14:49:05Z",
+    "filename": "03_variance_tolerance_nexgen.pdf",
+    "invoice_number": "INV-2026-7731",
+    "vendor_name": "NEXGEN HARDWARE SYSTEMS",
+    "vendor_id": "VEND-003",
+    "po_number": "PO-2026-103",
+    "invoice_total": 5120.0,
+    "po_total": 5000.0,
+    "status": "APPROVED",
+    "decision_type": "APPROVED_WITH_TOLERANCE",
+    "confidence_score": 1.0,
+    "latency_ms": 2778,
+    "summary": "Approved within allowable vendor tolerance threshold. All other KYC and anti-fraud checks passed.",
+    "recommended_action": "Schedule payment per standard terms Net 30.",
+    "vendor_email_draft": {
+      "subject": "Invoice Accepted for Payment: #INV-2026-7731 - NEXGEN HARDWARE SYSTEMS",
+      "body": "Dear NEXGEN HARDWARE SYSTEMS Accounts Receivable,\n\nWe are pleased to inform you that Invoice #INV-2026-7731 in the amount of $5,120.00 has been fully verified, matched against our procurement records, and approved for payment disbursement.\n\nStatus: Approved (APPROVED_WITH_TOLERANCE)\nPayment will be initiated in accordance with our agreed payment terms.\n\nThank you,\nAutomated Accounts Payable Operations"
+    },
+    "extracted_data": {
+      "invoice_number": "INV-2026-7731",
+      "po_number": "PO-2026-103",
+      "vendor_name": "NEXGEN HARDWARE SYSTEMS",
+      "invoice_date": "2026-10-18",
+      "due_date": "2026-11-17",
+      "subtotal": 5000.0,
+      "tax": 0.0,
+      "shipping": 120.0,
+      "total_amount": 5120.0,
+      "remittance_bank": {
+        "bank_name": "Wells Fargo Bank",
+        "routing_number": "071000013",
+        "account_number": "7718290214"
+      },
+      "line_items": [
+        {
+          "description": "ce      Total       \nDeveloper Workstation Pro Max",
+          "quantity": 2,
+          "unit_price": 2500.0,
+          "total": 5000.0
+        },
+        {
+          "description": "Expedited Freight Delivery Surcharge",
+          "quantity": 1,
+          "unit_price": 120.0,
+          "total": 120.0
+        }
+      ],
+      "raw_text": "NEXGEN HARDWARE SYSTEMS                                                         \n880 Technology Drive, Austin, TX 78701                                          \nTax ID: US-938210492 | Email: ar@nexgenhardware.com                             \n                                                                                \nCOMMERCIAL INVOICE                                                              \nInvoice Number: INV-2026-7731                                                   \nInvoice Date: 2026-10-18                                                        \nDue Date: 2026-11-17                                                            \nPayment Terms: Net 30                                                           \nPurchase Order: PO-2026-103                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nDeveloper Workstation Pro Max                   2    $2,500.00  $5,000.00       \nExpedited Freight Delivery Surcharge            1      $120.00    $120.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $5,000.00       \nShipping:                                                         $120.00       \nSales Tax:                                                          $0.00       \nGrand Total:                                                    $5,120.00       \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: Wells Fargo Bank                                                     \nRouting Number: 071000013                                                       \nAccount Number: 7718290214                                                      \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+      "confidence_score": 1.0,
+      "extraction_quality": "HIGH"
+    },
+    "match_result": {
+      "vendor_matched": true,
+      "vendor": {
+        "id": "VEND-003",
+        "name": "NexGen Hardware Systems",
+        "aliases": [
+          "NexGen Hardware",
+          "NexGen Systems Inc",
+          "NexGen HW"
+        ],
+        "tax_id": "US-938210492",
+        "email": "ar@nexgenhardware.com",
+        "status": "APPROVED",
+        "remittance_bank": {
+          "bank_name": "Wells Fargo Bank",
+          "routing_number": "071000013",
+          "account_number": "7718290214",
+          "account_display": "****9021"
+        },
+        "payment_terms": "Net 30",
+        "tolerance_percent": 3.0,
+        "tolerance_amount_max": 150.0
+      },
+      "po_matched": true,
+      "po": {
+        "po_number": "PO-2026-103",
+        "vendor_id": "VEND-003",
+        "vendor_name": "NexGen Hardware Systems",
+        "issue_date": "2026-10-01",
+        "status": "CLOSED",
+        "description": "Developer Workstations & Dual-Monitor Hubs",
+        "total_amount": 5000.0,
+        "previously_invoiced": 5120.0,
+        "remaining_balance": 0.0,
+        "currency": "USD",
+        "line_items": [
+          {
+            "item_id": "ITEM-301",
+            "description": "Developer Workstation Pro Max",
+            "quantity": 2,
+            "unit_price": 2500.0,
+            "total": 5000.0
+          }
+        ],
+        "invoices_billed": [
+          {
+            "invoice_number": "INV-2026-7731",
+            "amount": 5120.0,
+            "date": "2026-11-19",
+            "status": "APPROVED"
+          }
+        ]
+      },
+      "match_method": "EXPLICIT_PO_NUMBER",
+      "match_type": "OVER_BILLING",
+      "is_partial_draw": false,
+      "remaining_balance_before": 5000.0,
+      "remaining_balance_after": 0.0,
+      "variance_amount": 120.0,
+      "variance_percent": 2.4,
+      "line_reconciliation": [
+        {
+          "invoice_item": {
+            "description": "ce      Total       \nDeveloper Workstation Pro Max",
+            "quantity": 2,
+            "unit_price": 2500.0,
+            "total": 5000.0
+          },
+          "po_item": {
+            "item_id": "ITEM-301",
+            "description": "Developer Workstation Pro Max",
+            "quantity": 2,
+            "unit_price": 2500.0,
+            "total": 5000.0
+          },
+          "match_score": 0.73,
+          "matched": true,
+          "qty_match": true,
+          "price_match": true
+        },
+        {
+          "invoice_item": {
+            "description": "Expedited Freight Delivery Surcharge",
+            "quantity": 1,
+            "unit_price": 120.0,
+            "total": 120.0
+          },
+          "po_item": null,
+          "match_score": 0.0,
+          "matched": false,
+          "qty_match": false,
+          "price_match": false
+        }
+      ],
+      "reconciliation_notes": [
+        "Invoice total ($5,120.00) exceeds remaining PO balance ($5,000.00) by $120.00 (2.4%)."
+      ]
+    },
+    "rule_evaluations": [
+      {
+        "rule_id": "RULE_MANDATORY_FIELDS",
+        "rule_name": "Mandatory Tax & Compliance Fields",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "All required tax and invoice identification fields are present.",
+        "details": {
+          "invoice_number": "INV-2026-7731",
+          "date": "2026-10-18",
+          "total": 5120.0
+        }
+      },
+      {
+        "rule_id": "RULE_DUPLICATE_CHECK",
+        "rule_name": "Duplicate Invoice Detection",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "No duplicate record found in procurement history or active runs.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_VENDOR_KYC",
+        "rule_name": "Approved Vendor Directory & KYC",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Vendor verified: NexGen Hardware Systems (ID: VEND-003, Tax ID: US-938210492).",
+        "details": {
+          "vendor_id": "VEND-003",
+          "terms": "Net 30"
+        }
+      },
+      {
+        "rule_id": "RULE_PO_RECONCILIATION",
+        "rule_name": "Purchase Order Tolerance Policy",
+        "status": "WARN",
+        "severity": "MEDIUM",
+        "message": "Invoice exceeds PO balance by $120.00 (2.4%). Within approved tolerance limit (Max: 3.0% or $150.00).",
+        "details": {
+          "variance_amount": 120.0,
+          "variance_percent": 2.4,
+          "allowed_percent": 3.0,
+          "allowed_amount": 150.0
+        }
+      },
+      {
+        "rule_id": "RULE_BANK_REMITTANCE",
+        "rule_name": "Anti-Fraud Remittance Verification",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Remittance bank details verified against approved record (Wells Fargo Bank).",
+        "details": {
+          "bank_name": "Wells Fargo Bank"
+        }
+      },
+      {
+        "rule_id": "RULE_TAX_MATH",
+        "rule_name": "Tax & Line-Item Mathematical Integrity",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Financial arithmetic verified (Subtotal: $5,000.00, Tax: $0.00, Shipping: $120.00).",
+        "details": {
+          "subtotal": 5000.0,
+          "tax": 0.0,
+          "shipping": 120.0,
+          "total": 5120.0
+        }
+      }
+    ],
+    "stage_logs": [
+      {
+        "stage_number": 1,
+        "stage_name": "Document Ingestion & Optical Parsing",
+        "status": "COMPLETED",
+        "duration_ms": 7,
+        "summary": "Ingested '03_variance_tolerance_nexgen.pdf' (5021 characters extracted). Format verified.",
+        "details": {
+          "filename": "03_variance_tolerance_nexgen.pdf",
+          "char_count": 5021
+        }
+      },
+      {
+        "stage_number": 2,
+        "stage_name": "Entity & Semantic Extraction",
+        "status": "COMPLETED",
+        "duration_ms": 2770,
+        "summary": "Extracted Invoice #INV-2026-7731, Vendor: NEXGEN HARDWARE SYSTEMS, Total: $5,120.00 (Confidence: 100%).",
+        "details": {
+          "invoice_number": "INV-2026-7731",
+          "po_number": "PO-2026-103",
+          "vendor_name": "NEXGEN HARDWARE SYSTEMS",
+          "invoice_date": "2026-10-18",
+          "due_date": "2026-11-17",
+          "subtotal": 5000.0,
+          "tax": 0.0,
+          "shipping": 120.0,
+          "total_amount": 5120.0,
+          "remittance_bank": {
+            "bank_name": "Wells Fargo Bank",
+            "routing_number": "071000013",
+            "account_number": "7718290214"
+          },
+          "line_items": [
+            {
+              "description": "ce      Total       \nDeveloper Workstation Pro Max",
+              "quantity": 2,
+              "unit_price": 2500.0,
+              "total": 5000.0
+            },
+            {
+              "description": "Expedited Freight Delivery Surcharge",
+              "quantity": 1,
+              "unit_price": 120.0,
+              "total": 120.0
+            }
+          ],
+          "raw_text": "NEXGEN HARDWARE SYSTEMS                                                         \n880 Technology Drive, Austin, TX 78701                                          \nTax ID: US-938210492 | Email: ar@nexgenhardware.com                             \n                                                                                \nCOMMERCIAL INVOICE                                                              \nInvoice Number: INV-2026-7731                                                   \nInvoice Date: 2026-10-18                                                        \nDue Date: 2026-11-17                                                            \nPayment Terms: Net 30                                                           \nPurchase Order: PO-2026-103                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nDeveloper Workstation Pro Max                   2    $2,500.00  $5,000.00       \nExpedited Freight Delivery Surcharge            1      $120.00    $120.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $5,000.00       \nShipping:                                                         $120.00       \nSales Tax:                                                          $0.00       \nGrand Total:                                                    $5,120.00       \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: Wells Fargo Bank                                                     \nRouting Number: 071000013                                                       \nAccount Number: 7718290214                                                      \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+          "confidence_score": 1.0,
+          "extraction_quality": "HIGH"
+        }
+      },
+      {
+        "stage_number": 3,
+        "stage_name": "PO 2-Way / 3-Way Reconciliation",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "PO Reconciliation: OVER_BILLING. Invoice total ($5,120.00) exceeds remaining PO balance ($5,000.00) by $120.00 (2.4%).",
+        "details": {
+          "vendor_matched": true,
+          "vendor": {
+            "id": "VEND-003",
+            "name": "NexGen Hardware Systems",
+            "aliases": [
+              "NexGen Hardware",
+              "NexGen Systems Inc",
+              "NexGen HW"
+            ],
+            "tax_id": "US-938210492",
+            "email": "ar@nexgenhardware.com",
+            "status": "APPROVED",
+            "remittance_bank": {
+              "bank_name": "Wells Fargo Bank",
+              "routing_number": "071000013",
+              "account_number": "7718290214",
+              "account_display": "****9021"
+            },
+            "payment_terms": "Net 30",
+            "tolerance_percent": 3.0,
+            "tolerance_amount_max": 150.0
+          },
+          "po_matched": true,
+          "po": {
+            "po_number": "PO-2026-103",
+            "vendor_id": "VEND-003",
+            "vendor_name": "NexGen Hardware Systems",
+            "issue_date": "2026-10-01",
+            "status": "CLOSED",
+            "description": "Developer Workstations & Dual-Monitor Hubs",
+            "total_amount": 5000.0,
+            "previously_invoiced": 5120.0,
+            "remaining_balance": 0.0,
+            "currency": "USD",
+            "line_items": [
+              {
+                "item_id": "ITEM-301",
+                "description": "Developer Workstation Pro Max",
+                "quantity": 2,
+                "unit_price": 2500.0,
+                "total": 5000.0
+              }
+            ],
+            "invoices_billed": [
+              {
+                "invoice_number": "INV-2026-7731",
+                "amount": 5120.0,
+                "date": "2026-11-19",
+                "status": "APPROVED"
+              }
+            ]
+          },
+          "match_method": "EXPLICIT_PO_NUMBER",
+          "match_type": "OVER_BILLING",
+          "is_partial_draw": false,
+          "remaining_balance_before": 5000.0,
+          "remaining_balance_after": 0.0,
+          "variance_amount": 120.0,
+          "variance_percent": 2.4,
+          "line_reconciliation": [
+            {
+              "invoice_item": {
+                "description": "ce      Total       \nDeveloper Workstation Pro Max",
+                "quantity": 2,
+                "unit_price": 2500.0,
+                "total": 5000.0
+              },
+              "po_item": {
+                "item_id": "ITEM-301",
+                "description": "Developer Workstation Pro Max",
+                "quantity": 2,
+                "unit_price": 2500.0,
+                "total": 5000.0
+              },
+              "match_score": 0.73,
+              "matched": true,
+              "qty_match": true,
+              "price_match": true
+            },
+            {
+              "invoice_item": {
+                "description": "Expedited Freight Delivery Surcharge",
+                "quantity": 1,
+                "unit_price": 120.0,
+                "total": 120.0
+              },
+              "po_item": null,
+              "match_score": 0.0,
+              "matched": false,
+              "qty_match": false,
+              "price_match": false
+            }
+          ],
+          "reconciliation_notes": [
+            "Invoice total ($5,120.00) exceeds remaining PO balance ($5,000.00) by $120.00 (2.4%)."
+          ]
+        }
+      },
+      {
+        "stage_number": 4,
+        "stage_name": "Compliance, Fraud & Tolerance Engine",
+        "status": "WARNING",
+        "duration_ms": 0,
+        "summary": "Evaluated 6 enterprise rules: 5 Passed, 1 Warnings, 0 Failed.",
+        "details": [
+          {
+            "rule_id": "RULE_MANDATORY_FIELDS",
+            "rule_name": "Mandatory Tax & Compliance Fields",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "All required tax and invoice identification fields are present.",
+            "details": {
+              "invoice_number": "INV-2026-7731",
+              "date": "2026-10-18",
+              "total": 5120.0
+            }
+          },
+          {
+            "rule_id": "RULE_DUPLICATE_CHECK",
+            "rule_name": "Duplicate Invoice Detection",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "No duplicate record found in procurement history or active runs.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_VENDOR_KYC",
+            "rule_name": "Approved Vendor Directory & KYC",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Vendor verified: NexGen Hardware Systems (ID: VEND-003, Tax ID: US-938210492).",
+            "details": {
+              "vendor_id": "VEND-003",
+              "terms": "Net 30"
+            }
+          },
+          {
+            "rule_id": "RULE_PO_RECONCILIATION",
+            "rule_name": "Purchase Order Tolerance Policy",
+            "status": "WARN",
+            "severity": "MEDIUM",
+            "message": "Invoice exceeds PO balance by $120.00 (2.4%). Within approved tolerance limit (Max: 3.0% or $150.00).",
+            "details": {
+              "variance_amount": 120.0,
+              "variance_percent": 2.4,
+              "allowed_percent": 3.0,
+              "allowed_amount": 150.0
+            }
+          },
+          {
+            "rule_id": "RULE_BANK_REMITTANCE",
+            "rule_name": "Anti-Fraud Remittance Verification",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Remittance bank details verified against approved record (Wells Fargo Bank).",
+            "details": {
+              "bank_name": "Wells Fargo Bank"
+            }
+          },
+          {
+            "rule_id": "RULE_TAX_MATH",
+            "rule_name": "Tax & Line-Item Mathematical Integrity",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Financial arithmetic verified (Subtotal: $5,000.00, Tax: $0.00, Shipping: $120.00).",
+            "details": {
+              "subtotal": 5000.0,
+              "tax": 0.0,
+              "shipping": 120.0,
+              "total": 5120.0
+            }
+          }
+        ]
+      },
+      {
+        "stage_number": 5,
+        "stage_name": "Autonomous Decision & Audit Reasoning",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Final Decision: APPROVED (APPROVED_WITH_TOLERANCE). Approved within allowable vendor tolerance threshold. All other KYC and anti-fraud checks passed.",
+        "details": {
+          "decision_type": "APPROVED_WITH_TOLERANCE",
+          "reason_summary": "Approved within allowable vendor tolerance threshold. All other KYC and anti-fraud checks passed.",
+          "recommended_action": "Schedule payment per standard terms Net 30."
+        }
+      }
+    ]
+  },
+  {
+    "run_id": "RUN-20261119-144859",
+    "timestamp": "2026-11-19T14:48:59Z",
+    "filename": "02_split_po_apex.pdf",
+    "invoice_number": "INV-2026-9041",
+    "vendor_name": "APEX LOGISTICS LLC",
+    "vendor_id": "VEND-002",
+    "po_number": "PO-2026-102",
+    "invoice_total": 4200.0,
+    "po_total": 10000.0,
+    "status": "APPROVED",
+    "decision_type": "TOUCHLESS_PARTIAL_DRAW",
+    "confidence_score": 1.0,
+    "latency_ms": 2480,
+    "summary": "Valid partial draw against PO PO-2026-102. Remaining balance updated to $800.00.",
+    "recommended_action": "Schedule payment per standard terms.",
+    "vendor_email_draft": {
+      "subject": "Invoice Accepted for Payment: #INV-2026-9041 - APEX LOGISTICS LLC",
+      "body": "Dear APEX LOGISTICS LLC Accounts Receivable,\n\nWe are pleased to inform you that Invoice #INV-2026-9041 in the amount of $4,200.00 has been fully verified, matched against our procurement records, and approved for payment disbursement.\n\nStatus: Approved (TOUCHLESS_PARTIAL_DRAW)\nPayment will be initiated in accordance with our agreed payment terms.\n\nThank you,\nAutomated Accounts Payable Operations"
+    },
+    "extracted_data": {
+      "invoice_number": "INV-2026-9041",
+      "po_number": "PO-2026-102",
+      "vendor_name": "APEX LOGISTICS LLC",
+      "invoice_date": "2026-10-20",
+      "due_date": "2026-11-04",
+      "subtotal": 4200.0,
+      "tax": 0.0,
+      "shipping": 0.0,
+      "total_amount": 4200.0,
+      "remittance_bank": {
+        "bank_name": "Bank of America",
+        "routing_number": "121000358",
+        "account_number": "5481920731"
+      },
+      "line_items": [
+        {
+          "description": "otal       \nRegional Pallet Distribution (Batch B)",
+          "quantity": 1,
+          "unit_price": 4200.0,
+          "total": 4200.0
+        }
+      ],
+      "raw_text": "APEX LOGISTICS LLC                                                              \n450 Harbor Boulevard, Newark, NJ 07102                                          \nTax ID: US-472910481 | Invoices: invoices@apexlogistics.io                      \n                                                                                \nINVOICE (PARTIAL DRAW - MILESTONE B)                                            \nInvoice Number: INV-2026-9041                                                   \nInvoice Date: 2026-10-20                                                        \nDue Date: 2026-11-04                                                            \nPayment Terms: Net 15                                                           \nPurchase Order: PO-2026-102                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \nAttn: Accounts Payable Department                                               \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nRegional Pallet Distribution (Batch B)          1    $4,200.00  $4,200.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $4,200.00       \nFuel Surcharge:                                                     $0.00       \nTotal Amount:                                                   $4,200.00       \n                                                                                \nPO Status Note:                                                                 \nPartial draw against Master PO-2026-102 ($10,000 total).                        \nPrevious draw billed: $5,000 under INV-2026-8100.                               \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: Bank of America                                                      \nRouting Number: 121000358                                                       \nAccount Number: 5481920731                                                      \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+      "confidence_score": 1.0,
+      "extraction_quality": "HIGH"
+    },
+    "match_result": {
+      "vendor_matched": true,
+      "vendor": {
+        "id": "VEND-002",
+        "name": "Apex Logistics LLC",
+        "aliases": [
+          "Apex Logistics",
+          "Apex Freight Services",
+          "Apex Transport"
+        ],
+        "tax_id": "US-472910481",
+        "email": "invoices@apexlogistics.io",
+        "status": "APPROVED",
+        "remittance_bank": {
+          "bank_name": "Bank of America",
+          "routing_number": "121000358",
+          "account_number": "5481920731",
+          "account_display": "****7310"
+        },
+        "payment_terms": "Net 15",
+        "tolerance_percent": 3.0,
+        "tolerance_amount_max": 250.0
+      },
+      "po_matched": true,
+      "po": {
+        "po_number": "PO-2026-102",
+        "vendor_id": "VEND-002",
+        "vendor_name": "Apex Logistics LLC",
+        "issue_date": "2026-08-15",
+        "status": "PARTIALLY_INVOICED",
+        "description": "Regional Freight & Multi-Drop Warehouse Fulfillment",
+        "total_amount": 10000.0,
+        "previously_invoiced": 9200.0,
+        "remaining_balance": 800.0,
+        "currency": "USD",
+        "line_items": [
+          {
+            "item_id": "ITEM-201",
+            "description": "Regional Pallet Distribution (Batch A)",
+            "quantity": 1,
+            "unit_price": 5000.0,
+            "total": 5000.0
+          },
+          {
+            "item_id": "ITEM-202",
+            "description": "Regional Pallet Distribution (Batch B)",
+            "quantity": 1,
+            "unit_price": 4200.0,
+            "total": 4200.0
+          },
+          {
+            "item_id": "ITEM-203",
+            "description": "Fuel Surcharge Contingency Reserve",
+            "quantity": 1,
+            "unit_price": 800.0,
+            "total": 800.0
+          }
+        ],
+        "invoices_billed": [
+          {
+            "invoice_number": "INV-2026-8100",
+            "amount": 5000.0,
+            "date": "2026-09-10",
+            "status": "PAID"
+          },
+          {
+            "invoice_number": "INV-2026-9041",
+            "amount": 4200.0,
+            "date": "2026-11-19",
+            "status": "APPROVED"
+          }
+        ]
+      },
+      "match_method": "EXPLICIT_PO_NUMBER",
+      "match_type": "PARTIAL_PO_DRAW",
+      "is_partial_draw": true,
+      "remaining_balance_before": 5000.0,
+      "remaining_balance_after": 800.0,
+      "variance_amount": -800.0,
+      "variance_percent": -16.0,
+      "line_reconciliation": [
+        {
+          "invoice_item": {
+            "description": "otal       \nRegional Pallet Distribution (Batch B)",
+            "quantity": 1,
+            "unit_price": 4200.0,
+            "total": 4200.0
+          },
+          "po_item": {
+            "item_id": "ITEM-202",
+            "description": "Regional Pallet Distribution (Batch B)",
+            "quantity": 1,
+            "unit_price": 4200.0,
+            "total": 4200.0
+          },
+          "match_score": 0.86,
+          "matched": true,
+          "qty_match": true,
+          "price_match": true
+        }
+      ],
+      "reconciliation_notes": [
+        "Valid partial billing draw of $4,200.00 against $5,000.00 remaining on PO-2026-102. Anticipated remaining PO balance: $800.00."
+      ]
+    },
+    "rule_evaluations": [
+      {
+        "rule_id": "RULE_MANDATORY_FIELDS",
+        "rule_name": "Mandatory Tax & Compliance Fields",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "All required tax and invoice identification fields are present.",
+        "details": {
+          "invoice_number": "INV-2026-9041",
+          "date": "2026-10-20",
+          "total": 4200.0
+        }
+      },
+      {
+        "rule_id": "RULE_DUPLICATE_CHECK",
+        "rule_name": "Duplicate Invoice Detection",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "No duplicate record found in procurement history or active runs.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_VENDOR_KYC",
+        "rule_name": "Approved Vendor Directory & KYC",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Vendor verified: Apex Logistics LLC (ID: VEND-002, Tax ID: US-472910481).",
+        "details": {
+          "vendor_id": "VEND-002",
+          "terms": "Net 15"
+        }
+      },
+      {
+        "rule_id": "RULE_PO_RECONCILIATION",
+        "rule_name": "Cumulative PO Budget & Split Draw",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Valid partial invoice draw of $4,200.00. Leaves $800.00 remaining on PO PO-2026-102.",
+        "details": {
+          "po_total": 10000.0,
+          "previously_invoiced": 5000.0,
+          "new_balance": 800.0
+        }
+      },
+      {
+        "rule_id": "RULE_BANK_REMITTANCE",
+        "rule_name": "Anti-Fraud Remittance Verification",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Remittance bank details verified against approved record (Bank of America).",
+        "details": {
+          "bank_name": "Bank of America"
+        }
+      },
+      {
+        "rule_id": "RULE_TAX_MATH",
+        "rule_name": "Tax & Line-Item Mathematical Integrity",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Financial arithmetic verified (Subtotal: $4,200.00, Tax: $0.00, Shipping: $0.00).",
+        "details": {
+          "subtotal": 4200.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total": 4200.0
+        }
+      }
+    ],
+    "stage_logs": [
+      {
+        "stage_number": 1,
+        "stage_name": "Document Ingestion & Optical Parsing",
+        "status": "COMPLETED",
+        "duration_ms": 8,
+        "summary": "Ingested '02_split_po_apex.pdf' (5021 characters extracted). Format verified.",
+        "details": {
+          "filename": "02_split_po_apex.pdf",
+          "char_count": 5021
+        }
+      },
+      {
+        "stage_number": 2,
+        "stage_name": "Entity & Semantic Extraction",
+        "status": "COMPLETED",
+        "duration_ms": 2471,
+        "summary": "Extracted Invoice #INV-2026-9041, Vendor: APEX LOGISTICS LLC, Total: $4,200.00 (Confidence: 100%).",
+        "details": {
+          "invoice_number": "INV-2026-9041",
+          "po_number": "PO-2026-102",
+          "vendor_name": "APEX LOGISTICS LLC",
+          "invoice_date": "2026-10-20",
+          "due_date": "2026-11-04",
+          "subtotal": 4200.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total_amount": 4200.0,
+          "remittance_bank": {
+            "bank_name": "Bank of America",
+            "routing_number": "121000358",
+            "account_number": "5481920731"
+          },
+          "line_items": [
+            {
+              "description": "otal       \nRegional Pallet Distribution (Batch B)",
+              "quantity": 1,
+              "unit_price": 4200.0,
+              "total": 4200.0
+            }
+          ],
+          "raw_text": "APEX LOGISTICS LLC                                                              \n450 Harbor Boulevard, Newark, NJ 07102                                          \nTax ID: US-472910481 | Invoices: invoices@apexlogistics.io                      \n                                                                                \nINVOICE (PARTIAL DRAW - MILESTONE B)                                            \nInvoice Number: INV-2026-9041                                                   \nInvoice Date: 2026-10-20                                                        \nDue Date: 2026-11-04                                                            \nPayment Terms: Net 15                                                           \nPurchase Order: PO-2026-102                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \nAttn: Accounts Payable Department                                               \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nRegional Pallet Distribution (Batch B)          1    $4,200.00  $4,200.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $4,200.00       \nFuel Surcharge:                                                     $0.00       \nTotal Amount:                                                   $4,200.00       \n                                                                                \nPO Status Note:                                                                 \nPartial draw against Master PO-2026-102 ($10,000 total).                        \nPrevious draw billed: $5,000 under INV-2026-8100.                               \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: Bank of America                                                      \nRouting Number: 121000358                                                       \nAccount Number: 5481920731                                                      \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+          "confidence_score": 1.0,
+          "extraction_quality": "HIGH"
+        }
+      },
+      {
+        "stage_number": 3,
+        "stage_name": "PO 2-Way / 3-Way Reconciliation",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "PO Reconciliation: PARTIAL_PO_DRAW. Valid partial billing draw of $4,200.00 against $5,000.00 remaining on PO-2026-102. Anticipated remaining PO balance: $800.00.",
+        "details": {
+          "vendor_matched": true,
+          "vendor": {
+            "id": "VEND-002",
+            "name": "Apex Logistics LLC",
+            "aliases": [
+              "Apex Logistics",
+              "Apex Freight Services",
+              "Apex Transport"
+            ],
+            "tax_id": "US-472910481",
+            "email": "invoices@apexlogistics.io",
+            "status": "APPROVED",
+            "remittance_bank": {
+              "bank_name": "Bank of America",
+              "routing_number": "121000358",
+              "account_number": "5481920731",
+              "account_display": "****7310"
+            },
+            "payment_terms": "Net 15",
+            "tolerance_percent": 3.0,
+            "tolerance_amount_max": 250.0
+          },
+          "po_matched": true,
+          "po": {
+            "po_number": "PO-2026-102",
+            "vendor_id": "VEND-002",
+            "vendor_name": "Apex Logistics LLC",
+            "issue_date": "2026-08-15",
+            "status": "PARTIALLY_INVOICED",
+            "description": "Regional Freight & Multi-Drop Warehouse Fulfillment",
+            "total_amount": 10000.0,
+            "previously_invoiced": 9200.0,
+            "remaining_balance": 800.0,
+            "currency": "USD",
+            "line_items": [
+              {
+                "item_id": "ITEM-201",
+                "description": "Regional Pallet Distribution (Batch A)",
+                "quantity": 1,
+                "unit_price": 5000.0,
+                "total": 5000.0
+              },
+              {
+                "item_id": "ITEM-202",
+                "description": "Regional Pallet Distribution (Batch B)",
+                "quantity": 1,
+                "unit_price": 4200.0,
+                "total": 4200.0
+              },
+              {
+                "item_id": "ITEM-203",
+                "description": "Fuel Surcharge Contingency Reserve",
+                "quantity": 1,
+                "unit_price": 800.0,
+                "total": 800.0
+              }
+            ],
+            "invoices_billed": [
+              {
+                "invoice_number": "INV-2026-8100",
+                "amount": 5000.0,
+                "date": "2026-09-10",
+                "status": "PAID"
+              },
+              {
+                "invoice_number": "INV-2026-9041",
+                "amount": 4200.0,
+                "date": "2026-11-19",
+                "status": "APPROVED"
+              }
+            ]
+          },
+          "match_method": "EXPLICIT_PO_NUMBER",
+          "match_type": "PARTIAL_PO_DRAW",
+          "is_partial_draw": true,
+          "remaining_balance_before": 5000.0,
+          "remaining_balance_after": 800.0,
+          "variance_amount": -800.0,
+          "variance_percent": -16.0,
+          "line_reconciliation": [
+            {
+              "invoice_item": {
+                "description": "otal       \nRegional Pallet Distribution (Batch B)",
+                "quantity": 1,
+                "unit_price": 4200.0,
+                "total": 4200.0
+              },
+              "po_item": {
+                "item_id": "ITEM-202",
+                "description": "Regional Pallet Distribution (Batch B)",
+                "quantity": 1,
+                "unit_price": 4200.0,
+                "total": 4200.0
+              },
+              "match_score": 0.86,
+              "matched": true,
+              "qty_match": true,
+              "price_match": true
+            }
+          ],
+          "reconciliation_notes": [
+            "Valid partial billing draw of $4,200.00 against $5,000.00 remaining on PO-2026-102. Anticipated remaining PO balance: $800.00."
+          ]
+        }
+      },
+      {
+        "stage_number": 4,
+        "stage_name": "Compliance, Fraud & Tolerance Engine",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Evaluated 6 enterprise rules: 6 Passed, 0 Warnings, 0 Failed.",
+        "details": [
+          {
+            "rule_id": "RULE_MANDATORY_FIELDS",
+            "rule_name": "Mandatory Tax & Compliance Fields",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "All required tax and invoice identification fields are present.",
+            "details": {
+              "invoice_number": "INV-2026-9041",
+              "date": "2026-10-20",
+              "total": 4200.0
+            }
+          },
+          {
+            "rule_id": "RULE_DUPLICATE_CHECK",
+            "rule_name": "Duplicate Invoice Detection",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "No duplicate record found in procurement history or active runs.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_VENDOR_KYC",
+            "rule_name": "Approved Vendor Directory & KYC",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Vendor verified: Apex Logistics LLC (ID: VEND-002, Tax ID: US-472910481).",
+            "details": {
+              "vendor_id": "VEND-002",
+              "terms": "Net 15"
+            }
+          },
+          {
+            "rule_id": "RULE_PO_RECONCILIATION",
+            "rule_name": "Cumulative PO Budget & Split Draw",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Valid partial invoice draw of $4,200.00. Leaves $800.00 remaining on PO PO-2026-102.",
+            "details": {
+              "po_total": 10000.0,
+              "previously_invoiced": 5000.0,
+              "new_balance": 800.0
+            }
+          },
+          {
+            "rule_id": "RULE_BANK_REMITTANCE",
+            "rule_name": "Anti-Fraud Remittance Verification",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Remittance bank details verified against approved record (Bank of America).",
+            "details": {
+              "bank_name": "Bank of America"
+            }
+          },
+          {
+            "rule_id": "RULE_TAX_MATH",
+            "rule_name": "Tax & Line-Item Mathematical Integrity",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Financial arithmetic verified (Subtotal: $4,200.00, Tax: $0.00, Shipping: $0.00).",
+            "details": {
+              "subtotal": 4200.0,
+              "tax": 0.0,
+              "shipping": 0.0,
+              "total": 4200.0
+            }
+          }
+        ]
+      },
+      {
+        "stage_number": 5,
+        "stage_name": "Autonomous Decision & Audit Reasoning",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Final Decision: APPROVED (TOUCHLESS_PARTIAL_DRAW). Valid partial draw against PO PO-2026-102. Remaining balance updated to $800.00.",
+        "details": {
+          "decision_type": "TOUCHLESS_PARTIAL_DRAW",
+          "reason_summary": "Valid partial draw against PO PO-2026-102. Remaining balance updated to $800.00.",
+          "recommended_action": "Schedule payment per standard terms."
+        }
+      }
+    ]
+  },
+  {
+    "run_id": "RUN-20261119-144854",
+    "timestamp": "2026-11-19T14:48:54Z",
+    "filename": "01_happy_path_acme.pdf",
+    "invoice_number": "INV-2026-8812",
+    "vendor_name": "ACME CLOUD CORPORATION",
+    "vendor_id": "VEND-001",
+    "po_number": "PO-2026-101",
+    "invoice_total": 3500.0,
+    "po_total": 3500.0,
+    "status": "APPROVED",
+    "decision_type": "TOUCHLESS_APPROVED",
+    "confidence_score": 1.0,
+    "latency_ms": 2976,
+    "summary": "Straight-Through Processing (STP) success: 100% 2-way match, verified bank remittance, and active KYC.",
+    "recommended_action": "Auto-approve and export to ERP for scheduled disbursement.",
+    "vendor_email_draft": {
+      "subject": "Invoice Accepted for Payment: #INV-2026-8812 - ACME CLOUD CORPORATION",
+      "body": "Dear ACME CLOUD CORPORATION Accounts Receivable,\n\nWe are pleased to inform you that Invoice #INV-2026-8812 in the amount of $3,500.00 has been fully verified, matched against our procurement records, and approved for payment disbursement.\n\nStatus: Approved (TOUCHLESS_APPROVED)\nPayment will be initiated in accordance with our agreed payment terms.\n\nThank you,\nAutomated Accounts Payable Operations"
+    },
+    "extracted_data": {
+      "invoice_number": "INV-2026-8812",
+      "po_number": "PO-2026-101",
+      "vendor_name": "ACME CLOUD CORPORATION",
+      "invoice_date": "2026-10-15",
+      "due_date": "2026-11-14",
+      "subtotal": 3500.0,
+      "tax": 0.0,
+      "shipping": 0.0,
+      "total_amount": 3500.0,
+      "remittance_bank": {
+        "bank_name": "JPMorgan Chase Bank",
+        "routing_number": "021000021",
+        "account_number": "9842104892"
+      },
+      "line_items": [
+        {
+          "description": "4xlarge)",
+          "quantity": 20,
+          "unit_price": 150.0,
+          "total": 3000.0
+        },
+        {
+          "description": "Premium Support SLA",
+          "quantity": 1,
+          "unit_price": 500.0,
+          "total": 500.0
+        }
+      ],
+      "raw_text": "ACME CLOUD CORPORATION                                                          \n100 Silicon Way, Suite 400, San Francisco, CA 94107                             \nTax ID: US-849201948 | Email: billing@acmecloud.com                             \n                                                                                \nINVOICE                                                                         \nInvoice Number: INV-2026-8812                                                   \nInvoice Date: 2026-10-15                                                        \nDue Date: 2026-11-14                                                            \nPayment Terms: Net 30                                                           \nPurchase Order: PO-2026-101                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n500 Howard Street, San Francisco, CA                                            \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nCloud Compute Instances (c5.4xlarge)           20      $150.00  $3,000.00       \nPremium Support SLA                             1      $500.00    $500.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $3,500.00       \nSales Tax (0.0%):                                                   $0.00       \nTotal Due:                                                      $3,500.00       \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: JPMorgan Chase Bank                                                  \nRouting Number: 021000021                                                       \nAccount Number: 9842104892                                                      \nRemit To: Acme Cloud Corp Treasury                                              \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+      "confidence_score": 1.0,
+      "extraction_quality": "HIGH"
+    },
+    "match_result": {
+      "vendor_matched": true,
+      "vendor": {
+        "id": "VEND-001",
+        "name": "Acme Cloud Corp",
+        "aliases": [
+          "Acme Cloud",
+          "Acme Cloud Corporation",
+          "Acme Hosting"
+        ],
+        "tax_id": "US-849201948",
+        "email": "billing@acmecloud.com",
+        "status": "APPROVED",
+        "remittance_bank": {
+          "bank_name": "JPMorgan Chase Bank",
+          "routing_number": "021000021",
+          "account_number": "9842104892",
+          "account_display": "****4892"
+        },
+        "payment_terms": "Net 30",
+        "tolerance_percent": 2.0,
+        "tolerance_amount_max": 100.0
+      },
+      "po_matched": true,
+      "po": {
+        "po_number": "PO-2026-101",
+        "vendor_id": "VEND-001",
+        "vendor_name": "Acme Cloud Corp",
+        "issue_date": "2026-09-01",
+        "status": "CLOSED",
+        "description": "Enterprise Cloud Infrastructure & Hosting Q4",
+        "total_amount": 3500.0,
+        "previously_invoiced": 3500.0,
+        "remaining_balance": 0.0,
+        "currency": "USD",
+        "line_items": [
+          {
+            "item_id": "ITEM-101",
+            "description": "Cloud Compute Instances (c5.4xlarge)",
+            "quantity": 20,
+            "unit_price": 150.0,
+            "total": 3000.0
+          },
+          {
+            "item_id": "ITEM-102",
+            "description": "Premium Support SLA",
+            "quantity": 1,
+            "unit_price": 500.0,
+            "total": 500.0
+          }
+        ],
+        "invoices_billed": [
+          {
+            "invoice_number": "INV-2026-8812",
+            "amount": 3500.0,
+            "date": "2026-11-19",
+            "status": "APPROVED"
+          }
+        ]
+      },
+      "match_method": "EXPLICIT_PO_NUMBER",
+      "match_type": "EXACT_MATCH",
+      "is_partial_draw": false,
+      "remaining_balance_before": 3500.0,
+      "remaining_balance_after": 0.0,
+      "variance_amount": 0.0,
+      "variance_percent": 0.0,
+      "line_reconciliation": [
+        {
+          "invoice_item": {
+            "description": "4xlarge)",
+            "quantity": 20,
+            "unit_price": 150.0,
+            "total": 3000.0
+          },
+          "po_item": null,
+          "match_score": 0.0,
+          "matched": false,
+          "qty_match": false,
+          "price_match": false
+        },
+        {
+          "invoice_item": {
+            "description": "Premium Support SLA",
+            "quantity": 1,
+            "unit_price": 500.0,
+            "total": 500.0
+          },
+          "po_item": {
+            "item_id": "ITEM-102",
+            "description": "Premium Support SLA",
+            "quantity": 1,
+            "unit_price": 500.0,
+            "total": 500.0
+          },
+          "match_score": 1.0,
+          "matched": true,
+          "qty_match": true,
+          "price_match": true
+        }
+      ],
+      "reconciliation_notes": [
+        "Exact 100% 2-way match against PO-2026-101."
+      ]
+    },
+    "rule_evaluations": [
+      {
+        "rule_id": "RULE_MANDATORY_FIELDS",
+        "rule_name": "Mandatory Tax & Compliance Fields",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "All required tax and invoice identification fields are present.",
+        "details": {
+          "invoice_number": "INV-2026-8812",
+          "date": "2026-10-15",
+          "total": 3500.0
+        }
+      },
+      {
+        "rule_id": "RULE_DUPLICATE_CHECK",
+        "rule_name": "Duplicate Invoice Detection",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "No duplicate record found in procurement history or active runs.",
+        "details": {}
+      },
+      {
+        "rule_id": "RULE_VENDOR_KYC",
+        "rule_name": "Approved Vendor Directory & KYC",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Vendor verified: Acme Cloud Corp (ID: VEND-001, Tax ID: US-849201948).",
+        "details": {
+          "vendor_id": "VEND-001",
+          "terms": "Net 30"
+        }
+      },
+      {
+        "rule_id": "RULE_PO_RECONCILIATION",
+        "rule_name": "Purchase Order 2-Way Match",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Exact match with PO PO-2026-101 remaining balance ($3,500.00).",
+        "details": {
+          "match_type": "EXACT_MATCH",
+          "remaining": 3500.0
+        }
+      },
+      {
+        "rule_id": "RULE_BANK_REMITTANCE",
+        "rule_name": "Anti-Fraud Remittance Verification",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Remittance bank details verified against approved record (JPMorgan Chase Bank).",
+        "details": {
+          "bank_name": "JPMorgan Chase Bank"
+        }
+      },
+      {
+        "rule_id": "RULE_TAX_MATH",
+        "rule_name": "Tax & Line-Item Mathematical Integrity",
+        "status": "PASS",
+        "severity": "INFO",
+        "message": "Financial arithmetic verified (Subtotal: $3,500.00, Tax: $0.00, Shipping: $0.00).",
+        "details": {
+          "subtotal": 3500.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total": 3500.0
+        }
+      }
+    ],
+    "stage_logs": [
+      {
+        "stage_number": 1,
+        "stage_name": "Document Ingestion & Optical Parsing",
+        "status": "COMPLETED",
+        "duration_ms": 74,
+        "summary": "Ingested '01_happy_path_acme.pdf' (5021 characters extracted). Format verified.",
+        "details": {
+          "filename": "01_happy_path_acme.pdf",
+          "char_count": 5021
+        }
+      },
+      {
+        "stage_number": 2,
+        "stage_name": "Entity & Semantic Extraction",
+        "status": "COMPLETED",
+        "duration_ms": 2902,
+        "summary": "Extracted Invoice #INV-2026-8812, Vendor: ACME CLOUD CORPORATION, Total: $3,500.00 (Confidence: 100%).",
+        "details": {
+          "invoice_number": "INV-2026-8812",
+          "po_number": "PO-2026-101",
+          "vendor_name": "ACME CLOUD CORPORATION",
+          "invoice_date": "2026-10-15",
+          "due_date": "2026-11-14",
+          "subtotal": 3500.0,
+          "tax": 0.0,
+          "shipping": 0.0,
+          "total_amount": 3500.0,
+          "remittance_bank": {
+            "bank_name": "JPMorgan Chase Bank",
+            "routing_number": "021000021",
+            "account_number": "9842104892"
+          },
+          "line_items": [
+            {
+              "description": "4xlarge)",
+              "quantity": 20,
+              "unit_price": 150.0,
+              "total": 3000.0
+            },
+            {
+              "description": "Premium Support SLA",
+              "quantity": 1,
+              "unit_price": 500.0,
+              "total": 500.0
+            }
+          ],
+          "raw_text": "ACME CLOUD CORPORATION                                                          \n100 Silicon Way, Suite 400, San Francisco, CA 94107                             \nTax ID: US-849201948 | Email: billing@acmecloud.com                             \n                                                                                \nINVOICE                                                                         \nInvoice Number: INV-2026-8812                                                   \nInvoice Date: 2026-10-15                                                        \nDue Date: 2026-11-14                                                            \nPayment Terms: Net 30                                                           \nPurchase Order: PO-2026-101                                                     \n                                                                                \nBilled To:                                                                      \nZamp Financial Technologies Inc.                                                \n500 Howard Street, San Francisco, CA                                            \n                                                                                \nLINE ITEMS:                                                                     \nDescription                                   Qty   Unit Price      Total       \nCloud Compute Instances (c5.4xlarge)           20      $150.00  $3,000.00       \nPremium Support SLA                             1      $500.00    $500.00       \n                                                                                \n-------------------------------------------------------------------------       \nSubtotal:                                                       $3,500.00       \nSales Tax (0.0%):                                                   $0.00       \nTotal Due:                                                      $3,500.00       \n                                                                                \nREMITTANCE INSTRUCTIONS:                                                        \nBank Name: JPMorgan Chase Bank                                                  \nRouting Number: 021000021                                                       \nAccount Number: 9842104892                                                      \nRemit To: Acme Cloud Corp Treasury                                              \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                \n                                                                                ",
+          "confidence_score": 1.0,
+          "extraction_quality": "HIGH"
+        }
+      },
+      {
+        "stage_number": 3,
+        "stage_name": "PO 2-Way / 3-Way Reconciliation",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "PO Reconciliation: EXACT_MATCH. Exact 100% 2-way match against PO-2026-101.",
+        "details": {
+          "vendor_matched": true,
+          "vendor": {
+            "id": "VEND-001",
+            "name": "Acme Cloud Corp",
+            "aliases": [
+              "Acme Cloud",
+              "Acme Cloud Corporation",
+              "Acme Hosting"
+            ],
+            "tax_id": "US-849201948",
+            "email": "billing@acmecloud.com",
+            "status": "APPROVED",
+            "remittance_bank": {
+              "bank_name": "JPMorgan Chase Bank",
+              "routing_number": "021000021",
+              "account_number": "9842104892",
+              "account_display": "****4892"
+            },
+            "payment_terms": "Net 30",
+            "tolerance_percent": 2.0,
+            "tolerance_amount_max": 100.0
+          },
+          "po_matched": true,
+          "po": {
+            "po_number": "PO-2026-101",
+            "vendor_id": "VEND-001",
+            "vendor_name": "Acme Cloud Corp",
+            "issue_date": "2026-09-01",
+            "status": "CLOSED",
+            "description": "Enterprise Cloud Infrastructure & Hosting Q4",
+            "total_amount": 3500.0,
+            "previously_invoiced": 3500.0,
+            "remaining_balance": 0.0,
+            "currency": "USD",
+            "line_items": [
+              {
+                "item_id": "ITEM-101",
+                "description": "Cloud Compute Instances (c5.4xlarge)",
+                "quantity": 20,
+                "unit_price": 150.0,
+                "total": 3000.0
+              },
+              {
+                "item_id": "ITEM-102",
+                "description": "Premium Support SLA",
+                "quantity": 1,
+                "unit_price": 500.0,
+                "total": 500.0
+              }
+            ],
+            "invoices_billed": [
+              {
+                "invoice_number": "INV-2026-8812",
+                "amount": 3500.0,
+                "date": "2026-11-19",
+                "status": "APPROVED"
+              }
+            ]
+          },
+          "match_method": "EXPLICIT_PO_NUMBER",
+          "match_type": "EXACT_MATCH",
+          "is_partial_draw": false,
+          "remaining_balance_before": 3500.0,
+          "remaining_balance_after": 0.0,
+          "variance_amount": 0.0,
+          "variance_percent": 0.0,
+          "line_reconciliation": [
+            {
+              "invoice_item": {
+                "description": "4xlarge)",
+                "quantity": 20,
+                "unit_price": 150.0,
+                "total": 3000.0
+              },
+              "po_item": null,
+              "match_score": 0.0,
+              "matched": false,
+              "qty_match": false,
+              "price_match": false
+            },
+            {
+              "invoice_item": {
+                "description": "Premium Support SLA",
+                "quantity": 1,
+                "unit_price": 500.0,
+                "total": 500.0
+              },
+              "po_item": {
+                "item_id": "ITEM-102",
+                "description": "Premium Support SLA",
+                "quantity": 1,
+                "unit_price": 500.0,
+                "total": 500.0
+              },
+              "match_score": 1.0,
+              "matched": true,
+              "qty_match": true,
+              "price_match": true
+            }
+          ],
+          "reconciliation_notes": [
+            "Exact 100% 2-way match against PO-2026-101."
+          ]
+        }
+      },
+      {
+        "stage_number": 4,
+        "stage_name": "Compliance, Fraud & Tolerance Engine",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Evaluated 6 enterprise rules: 6 Passed, 0 Warnings, 0 Failed.",
+        "details": [
+          {
+            "rule_id": "RULE_MANDATORY_FIELDS",
+            "rule_name": "Mandatory Tax & Compliance Fields",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "All required tax and invoice identification fields are present.",
+            "details": {
+              "invoice_number": "INV-2026-8812",
+              "date": "2026-10-15",
+              "total": 3500.0
+            }
+          },
+          {
+            "rule_id": "RULE_DUPLICATE_CHECK",
+            "rule_name": "Duplicate Invoice Detection",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "No duplicate record found in procurement history or active runs.",
+            "details": {}
+          },
+          {
+            "rule_id": "RULE_VENDOR_KYC",
+            "rule_name": "Approved Vendor Directory & KYC",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Vendor verified: Acme Cloud Corp (ID: VEND-001, Tax ID: US-849201948).",
+            "details": {
+              "vendor_id": "VEND-001",
+              "terms": "Net 30"
+            }
+          },
+          {
+            "rule_id": "RULE_PO_RECONCILIATION",
+            "rule_name": "Purchase Order 2-Way Match",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Exact match with PO PO-2026-101 remaining balance ($3,500.00).",
+            "details": {
+              "match_type": "EXACT_MATCH",
+              "remaining": 3500.0
+            }
+          },
+          {
+            "rule_id": "RULE_BANK_REMITTANCE",
+            "rule_name": "Anti-Fraud Remittance Verification",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Remittance bank details verified against approved record (JPMorgan Chase Bank).",
+            "details": {
+              "bank_name": "JPMorgan Chase Bank"
+            }
+          },
+          {
+            "rule_id": "RULE_TAX_MATH",
+            "rule_name": "Tax & Line-Item Mathematical Integrity",
+            "status": "PASS",
+            "severity": "INFO",
+            "message": "Financial arithmetic verified (Subtotal: $3,500.00, Tax: $0.00, Shipping: $0.00).",
+            "details": {
+              "subtotal": 3500.0,
+              "tax": 0.0,
+              "shipping": 0.0,
+              "total": 3500.0
+            }
+          }
+        ]
+      },
+      {
+        "stage_number": 5,
+        "stage_name": "Autonomous Decision & Audit Reasoning",
+        "status": "COMPLETED",
+        "duration_ms": 0,
+        "summary": "Final Decision: APPROVED (TOUCHLESS_APPROVED). Straight-Through Processing (STP) success: 100% 2-way match, verified bank remittance, and active KYC.",
+        "details": {
+          "decision_type": "TOUCHLESS_APPROVED",
+          "reason_summary": "Straight-Through Processing (STP) success: 100% 2-way match, verified bank remittance, and active KYC.",
+          "recommended_action": "Auto-approve and export to ERP for scheduled disbursement."
+        }
+      }
+    ]
+  },
+  {
+    "run_id": "RUN-20261115-091422",
+    "timestamp": "2026-11-15T09:14:22Z",
+    "invoice_number": "INV-2026-8100",
+    "vendor_name": "Apex Logistics LLC",
+    "vendor_id": "VEND-002",
+    "po_number": "PO-2026-102",
+    "invoice_total": 5000.0,
+    "po_total": 10000.0,
+    "status": "APPROVED",
+    "decision_type": "TOUCHLESS_APPROVED",
+    "confidence_score": 0.99,
+    "latency_ms": 420,
+    "summary": "Initial milestone draw on PO-2026-102. Line items, bank routing, and tax ID matched master ledger.",
+    "flags": []
+  },
+  {
+    "run_id": "RUN-20261115-113010",
+    "timestamp": "2026-11-15T11:30:10Z",
+    "invoice_number": "INV-2026-7011",
+    "vendor_name": "Vertex Consulting Partners",
+    "vendor_id": "VEND-005",
+    "po_number": "PO-2026-105",
+    "invoice_total": 12500.0,
+    "po_total": 12500.0,
+    "status": "APPROVED",
+    "decision_type": "TOUCHLESS_APPROVED",
+    "confidence_score": 0.98,
+    "latency_ms": 380,
+    "summary": "Full milestone invoice matched PO-2026-105. PO closed automatically.",
+    "flags": []
+  },
+  {
+    "run_id": "RUN-20261115-142250",
+    "timestamp": "2026-11-15T14:22:50Z",
+    "invoice_number": "INV-2026-5502",
+    "vendor_name": "Unknown Express Logistics",
+    "vendor_id": null,
+    "po_number": null,
+    "invoice_total": 850.0,
+    "po_total": null,
+    "status": "REJECTED",
+    "decision_type": "REJECTED",
+    "confidence_score": 0.42,
+    "latency_ms": 290,
+    "summary": "Unregistered vendor. Missing PO reference and unverified bank account.",
+    "flags": [
+      "VENDOR_UNREGISTERED",
+      "MISSING_PO_NUMBER",
+      "BANK_NOT_VERIFIED"
+    ]
+  }
+]

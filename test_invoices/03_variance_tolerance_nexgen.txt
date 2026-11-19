@@ -1,0 +1,29 @@
+NEXGEN HARDWARE SYSTEMS
+880 Technology Drive, Austin, TX 78701
+Tax ID: US-938210492 | Email: ar@nexgenhardware.com
+
+COMMERCIAL INVOICE
+Invoice Number: INV-2026-7731
+Invoice Date: 2026-10-18
+Due Date: 2026-11-17
+Payment Terms: Net 30
+Purchase Order: PO-2026-103
+
+Billed To:
+Zamp Financial Technologies Inc.
+
+LINE ITEMS:
+Description                                   Qty   Unit Price      Total
+Developer Workstation Pro Max                   2    $2,500.00  $5,000.00
+Expedited Freight Delivery Surcharge            1      $120.00    $120.00
+
+-------------------------------------------------------------------------
+Subtotal:                                                       $5,000.00
+Shipping:                                                         $120.00
+Sales Tax:                                                          $0.00
+Grand Total:                                                    $5,120.00
+
+REMITTANCE INSTRUCTIONS:
+Bank Name: Wells Fargo Bank
+Routing Number: 071000013
+Account Number: 7718290214

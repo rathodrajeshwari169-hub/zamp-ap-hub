@@ -1,0 +1,26 @@
+APEX LOGISTICS LLC
+450 Harbor Boulevard, Newark, NJ 07102
+Tax ID: US-472910481 | Invoices: invoices@apexlogistics.io
+
+INVOICE (RESUBMISSION)
+Invoice Number: INV-2026-8100
+Invoice Date: 2026-09-10
+Due Date: 2026-09-25
+Payment Terms: Net 15
+Purchase Order: PO-2026-102
+
+Billed To:
+Zamp Financial Technologies Inc.
+
+LINE ITEMS:
+Description                                   Qty   Unit Price      Total
+Regional Pallet Distribution (Batch A)          1    $5,000.00  $5,000.00
+
+-------------------------------------------------------------------------
+Subtotal:                                                       $5,000.00
+Total Due:                                                      $5,000.00
+
+REMITTANCE INSTRUCTIONS:
+Bank Name: Bank of America
+Routing Number: 121000358
+Account Number: 5481920731
