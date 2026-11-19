@@ -136,9 +136,3 @@ Zamp/
 
 ---
 
-## 🏆 Deliverables Checklist (Per Zamp Candidate Guide)
-
-- [x] **Deliverable 1 — A working automated process · live and runnable**: Accepts real PDF/text inputs, executes complete 5-stage logic, features an intuitive UI with live run view and dashboard.
-- [x] **Deliverable 2 — 5-minute demo video script**: Ready in `DEMO_VIDEO_SCRIPT.md`.
-- [x] **2–4 Realistic Edge Cases (Delivered 5)**: Split PO billing, Tolerance threshold variance, Bank wire phishing alert, Duplicate invoice prevention, Missing compliance data.
-- [x] **Prepared for Live Demo in Follow-up Interview**: Tested, reproducible, zero-friction local execution.
